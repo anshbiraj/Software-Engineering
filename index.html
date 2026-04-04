@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Engineering – Mid Semester Exam Answer Key</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink: #1a1a2e;
+    --ink-soft: #3d3d5c;
+    --ink-muted: #6e6e8c;
+    --page: #faf9f6;
+    --accent: #c0392b;
+    --accent-soft: #f5e6e4;
+    --gold: #b5860d;
+    --gold-soft: #fdf4dc;
+    --teal: #0d6e6e;
+    --teal-soft: #e0f4f4;
+    --rule: #d4d0c8;
+    --card-bg: #ffffff;
+    --badge-fn: #0d6e6e;
+    --badge-nfn: #7b2d8b;
+    --badge-bg-fn: #e0f4f4;
+    --badge-bg-nfn: #f4e0f9;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--page);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* ── Header ── */
+  .masthead {
+    background: var(--ink);
+    color: #fff;
+    padding: 48px 60px 36px;
+    border-bottom: 5px solid var(--accent);
+  }
+  .masthead-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .masthead-meta {
+    font-size: 13px;
+    color: #b0aec8;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 14px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* ── Question Card ── */
+  .q-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    margin-bottom: 48px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 28px 20px;
+    border-bottom: 2px solid var(--rule);
+    background: #fdfcf9;
+  }
+  .q-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--rule);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 52px;
+  }
+  .q-scenario {
+    flex: 1;
+  }
+  .q-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .q-scenario blockquote {
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--accent);
+    padding-left: 14px;
+    margin: 6px 0 4px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .q-topic {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+  }
+
+  .q-body {
+    padding: 28px 28px 28px 28px;
+  }
+
+  /* ── Section headings inside answer ── */
+  .ans-section {
+    margin-bottom: 24px;
+  }
+  .ans-section:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold-soft);
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin: 10px 0;
+  }
+  th {
+    background: var(--ink);
+    color: #fff;
+    padding: 8px 12px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  tr:nth-child(even) td { background: #faf9f6; }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .badge-fn { background: var(--badge-bg-fn); color: var(--badge-fn); }
+  .badge-nfn { background: var(--badge-bg-nfn); color: var(--badge-nfn); }
+  .badge-issue { background: #fde8e8; color: #9b2222; }
+  .badge-refined { background: var(--gold-soft); color: var(--gold); }
+
+  /* ── Requirement boxes ── */
+  .req-box {
+    background: var(--teal-soft);
+    border-left: 4px solid var(--teal);
+    border-radius: 0 4px 4px 0;
+    padding: 10px 14px;
+    margin: 6px 0;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+  .req-box strong {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--teal);
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+
+  .req-box.nfn {
+    background: #f4e0f9;
+    border-color: #7b2d8b;
+  }
+  .req-box.nfn strong { color: #7b2d8b; }
+
+  .req-box.gold {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+  }
+  .req-box.gold strong { color: var(--gold); }
+
+  .req-box.danger {
+    background: #fde8e8;
+    border-color: #c0392b;
+  }
+  .req-box.danger strong { color: #c0392b; }
+
+  /* ── Prose lists ── */
+  ol, ul {
+    padding-left: 22px;
+    margin: 8px 0;
+  }
+  li { margin-bottom: 5px; line-height: 1.7; }
+  li strong { color: var(--ink); }
+
+  /* ── Horizontal rule ── */
+  .divider { border: none; border-top: 1px solid var(--rule); margin: 18px 0; }
+
+  /* ── Callout ── */
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid #e8c4c0;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin: 12px 0;
+  }
+  .callout strong { color: var(--accent); }
+
+  /* ── Architecture diagram ── */
+  .arch-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .arch-box {
+    flex: 1;
+    min-width: 140px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 12px 14px;
+    background: #fff;
+    position: relative;
+  }
+  .arch-box .arch-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+  }
+  .arch-box .arch-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .arch-box p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+
+  .arch-box.highlight { border-color: var(--teal); background: var(--teal-soft); }
+  .arch-box.highlight .arch-label { color: var(--teal); }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; }
+    .q-card { page-break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    .masthead { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-label">Answer Key · Model Solutions</div>
+  <h1>Software Engineering<br>Mid Semester Exam</h1>
+  <div class="masthead-meta">
+    <span>Course: SE SAP ZC344</span>
+    <span>Batch: 2024 · SAP LABs SL 70</span>
+    <span>Faculty: Prof. Balachandra A</span>
+    <span>Date: 4 April 2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 1 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">1</div>
+    <div class="q-scenario">
+      <div class="q-label">Online Food Delivery System · SRS Analysis</div>
+      <blockquote>"The system should provide fast delivery, accurate orders, and good customer experience."</blockquote>
+      <div class="q-topic">Ambiguity identification · FR/NFR classification · Refined requirements</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">(a) Five Ambiguities / Issues Identified</div>
+      <table>
+        <tr><th>#</th><th>Ambiguous Term</th><th>Issue</th></tr>
+        <tr><td>1</td><td><strong>"Fast delivery"</strong></td><td>No time unit specified. "Fast" is subjective — 30 min? 60 min? Varies by user expectations and city geography.</td></tr>
+        <tr><td>2</td><td><strong>"Accurate orders"</strong></td><td>Accuracy is unmeasured. Does it mean item correctness, quantity, packaging, restaurant compliance? No error-rate threshold given.</td></tr>
+        <tr><td>3</td><td><strong>"Good customer experience"</strong></td><td>Entirely subjective. No metric (CSAT score, NPS, response time, UI load time) is defined. Means different things to each stakeholder.</td></tr>
+        <tr><td>4</td><td><strong>"Should provide"</strong></td><td>Weak modal verb. Does not indicate mandatory obligation vs. optional feature. "Shall" implies a binding requirement; "should" is ambiguous.</td></tr>
+        <tr><td>5</td><td><strong>No boundary or scope</strong></td><td>The statement mixes delivery logistics, order management, and UX in one sentence — making it impossible to assign responsibility or test individually.</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">(b) Classification: Functional vs Non-Functional</div>
+      <table>
+        <tr><th>Phrase</th><th>Classification</th><th>Justification</th></tr>
+        <tr>
+          <td>"Accurate orders"</td>
+          <td><span class="badge badge-fn">Functional</span></td>
+          <td>Describes what the system must do — correctly transmit order details from customer to restaurant to delivery agent.</td>
+        </tr>
+        <tr>
+          <td>"Fast delivery"</td>
+          <td><span class="badge badge-nfn">Non-Functional</span></td>
+          <td>A performance/time constraint on the delivery process — a quality attribute, not a system action.</td>
+        </tr>
+        <tr>
+          <td>"Good customer experience"</td>
+          <td><span class="badge badge-nfn">Non-Functional</span></td>
+          <td>A usability and satisfaction quality attribute — relates to how the system behaves, not what it does.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">(c) Refined — Measurable & Testable Requirements</div>
+      <div class="req-box">
+        <strong>FR-01 · Order Accuracy</strong>
+        The system shall capture and transmit order details (item name, quantity, special instructions, delivery address) to the restaurant with 99.5% accuracy, validated against the customer's confirmed cart snapshot.
+      </div>
+      <div class="req-box">
+        <strong>FR-02 · Order Tracking</strong>
+        The system shall provide real-time order status updates (Confirmed → Preparing → Out for Delivery → Delivered) with location tracking refreshed every 30 seconds.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-01 · Delivery Time Performance</strong>
+        95% of orders placed within a 5 km radius shall be delivered within 30 minutes of order confirmation under normal traffic conditions.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-02 · Usability</strong>
+        A first-time user shall be able to place an order within 3 minutes without external assistance, verified by usability testing with a sample of 20 users achieving ≥85% task completion rate.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-03 · Customer Satisfaction</strong>
+        The system shall maintain an average customer satisfaction score (CSAT) of ≥4.2 out of 5.0, measured via post-delivery in-app surveys with a response rate target of ≥30%.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 2 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">2</div>
+    <div class="q-scenario">
+      <div class="q-label">Hospital Management System · Stakeholder Conflict</div>
+      <blockquote>"The system must be reliable, quick, and easy to use for all users."</blockquote>
+      <div class="q-topic">Multi-stakeholder analysis · FR/NFR classification · 6 verifiable requirements</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">Ambiguities and Conflicting Interpretations</div>
+      <table>
+        <tr><th>Term</th><th>Doctor's Interpretation</th><th>Administrator's Interpretation</th></tr>
+        <tr><td><strong>"Reliable"</strong></td><td>System never crashes during patient consultation; data always accessible instantly</td><td>Reports generate correctly every time; audit logs are always complete</td></tr>
+        <tr><td><strong>"Quick"</strong></td><td>Patient records load in under 1 second to speed up clinical decisions</td><td>Monthly billing reports generate within 2 minutes; batch jobs complete overnight</td></tr>
+        <tr><td><strong>"Easy to use"</strong></td><td>Single-click access to patient history; minimal typing during consultations</td><td>Intuitive admin dashboard; simple data export workflows</td></tr>
+        <tr><td><strong>"All users"</strong></td><td>Refers to clinical staff (doctors, nurses)</td><td>Refers to administrative, finance, and management staff</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">FR / NFR Classification</div>
+      <table>
+        <tr><th>Implied Requirement</th><th>Type</th></tr>
+        <tr><td>Display patient medical records on demand</td><td><span class="badge badge-fn">Functional</span></td></tr>
+        <tr><td>Generate administrative and billing reports</td><td><span class="badge badge-fn">Functional</span></td></tr>
+        <tr><td>System response time for queries</td><td><span class="badge badge-nfn">Non-Functional (Performance)</span></td></tr>
+        <tr><td>System availability / uptime</td><td><span class="badge badge-nfn">Non-Functional (Reliability)</span></td></tr>
+        <tr><td>User interface learnability</td><td><span class="badge badge-nfn">Non-Functional (Usability)</span></td></tr>
+        <tr><td>Data integrity and recovery</td><td><span class="badge badge-nfn">Non-Functional (Reliability)</span></td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">Six Precise and Verifiable Requirements</div>
+      <div class="req-box">
+        <strong>NFR-01 · Performance (Doctors)</strong>
+        Patient medical records shall load within 1.5 seconds for 95th percentile of requests under a concurrent load of 200 active clinical users.
+      </div>
+      <div class="req-box">
+        <strong>NFR-02 · Performance (Administrators)</strong>
+        Monthly billing and administrative reports covering up to 10,000 patient records shall be generated within 3 minutes.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-03 · Reliability / Uptime</strong>
+        The system shall maintain 99.9% uptime during scheduled operating hours (06:00–22:00), permitting no more than 8.7 hours of unplanned downtime annually.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-04 · Fault Tolerance</strong>
+        In the event of a server failure, the system shall automatically failover to a secondary instance within 30 seconds with zero data loss (RPO = 0, RTO ≤ 30s).
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-05 · Usability (Doctors)</strong>
+        A trained doctor shall be able to retrieve a patient's full medical history using no more than 3 interface interactions (clicks/keystrokes), verified through usability testing.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-06 · Usability (Administrators)</strong>
+        A new administrative user shall complete core data-entry and report-generation tasks after ≤2 hours of training, with a task-success rate of ≥90% in post-training evaluation.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 3 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">3</div>
+    <div class="q-scenario">
+      <div class="q-label">Ride-Sharing Application · SRS Quality Characteristics</div>
+      <blockquote>"The system should be safe, efficient, and scalable."</blockquote>
+      <div class="q-topic">Quality attribute decomposition · Pressman SRS characteristics · NFR mapping · Engineering-level specification</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">Decomposition into Individual Quality Attributes</div>
+      <table>
+        <tr><th>Vague Term</th><th>Decomposed Attributes</th></tr>
+        <tr><td><strong>Safe</strong></td><td>Security (data protection, authentication), Safety (physical rider/driver protection), Privacy (location data handling)</td></tr>
+        <tr><td><strong>Efficient</strong></td><td>Performance (response time, throughput), Resource utilization (CPU, memory, battery), Algorithmic efficiency (route matching, ride dispatch latency)</td></tr>
+        <tr><td><strong>Scalable</strong></td><td>Load scalability (concurrent users), Geographic scalability (multi-city support), Elasticity (auto-scaling under surge demand)</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">Why the Requirement Fails Pressman's Good SRS Characteristics</div>
+      <table>
+        <tr><th>SRS Characteristic (Pressman)</th><th>Failure Analysis</th></tr>
+        <tr><td><strong>Unambiguous</strong></td><td>"Safe," "efficient," and "scalable" each have multiple meanings and no agreed definition in this context.</td></tr>
+        <tr><td><strong>Complete</strong></td><td>No thresholds, metrics, or boundary conditions are provided. The requirement is incomplete as a specification.</td></tr>
+        <tr><td><strong>Verifiable</strong></td><td>There is no test condition possible — how do you test that a system is "safe enough" or "efficient enough"?</td></tr>
+        <tr><td><strong>Consistent</strong></td><td>Safety and efficiency can conflict (e.g., stronger encryption adds latency), yet no priority or resolution is specified.</td></tr>
+        <tr><td><strong>Traceable</strong></td><td>Cannot be traced to specific design components, modules, or test cases since the requirement is not atomic.</td></tr>
+        <tr><td><strong>Modifiable</strong></td><td>Changing one attribute (e.g., scalability target) would require restructuring the entire vague statement rather than editing a discrete requirement.</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">Mapping to NFR Categories</div>
+      <table>
+        <tr><th>Attribute</th><th>NFR Category</th></tr>
+        <tr><td>Safe (data)</td><td>Security — ISO/IEC 25010: Confidentiality, Integrity</td></tr>
+        <tr><td>Safe (rider)</td><td>Safety — ISO/IEC 25010: Operational Constraint</td></tr>
+        <tr><td>Efficient (response)</td><td>Performance Efficiency — Response time, Throughput</td></tr>
+        <tr><td>Efficient (resources)</td><td>Performance Efficiency — Resource utilisation</td></tr>
+        <tr><td>Scalable (load)</td><td>Scalability — Capacity/Elasticity</td></tr>
+        <tr><td>Scalable (geographic)</td><td>Portability / Adaptability</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">Refined Engineering-Level Specifications</div>
+      <div class="req-box danger">
+        <strong>NFR-SEC-01 · Authentication Security</strong>
+        All ride requests shall be authenticated using OAuth 2.0 with JWT tokens. Driver and rider accounts shall support two-factor authentication. Failed login attempts exceeding 5 within 60 seconds shall trigger a 15-minute account lockout.
+      </div>
+      <div class="req-box danger">
+        <strong>NFR-SEC-02 · Location Data Privacy</strong>
+        User location data shall be encrypted at rest (AES-256) and in transit (TLS 1.3). Location history shall be purged after 90 days unless legally mandated otherwise.
+      </div>
+      <div class="req-box">
+        <strong>NFR-PERF-01 · Ride Matching Efficiency</strong>
+        The ride-dispatch algorithm shall match a rider to an available driver within 5 seconds for 99% of requests under normal load (≤50,000 concurrent users).
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-SCALE-01 · Load Scalability</strong>
+        The system shall support horizontal auto-scaling to handle a 5× surge in concurrent users (up to 250,000) within 120 seconds, maintaining response times within defined SLA thresholds.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 4 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">4</div>
+    <div class="q-scenario">
+      <div class="q-label">Cloud-Based LMS · Vague Scalability & Quality Requirements</div>
+      <blockquote>"The system should support many users, be responsive, and ensure high quality."</blockquote>
+      <div class="q-topic">Critical evaluation · Impact on planning/testing · Quality attribute categorisation · Revised requirements</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">1. Critical Evaluation — Missing Specification Details</div>
+      <table>
+        <tr><th>Vague Term</th><th>Missing Specification Detail</th></tr>
+        <tr><td>"Many users"</td><td>No numeric range. 1,000? 100,000? 1 million? No distinction between concurrent vs registered users. No geographic distribution or peak-load scenario defined.</td></tr>
+        <tr><td>"Be responsive"</td><td>No latency target. Responsive to what operation? Page load? Video streaming? Quiz submission? Under what network conditions?</td></tr>
+        <tr><td>"High quality"</td><td>No quality model referenced (ISO 25010, FURPS+). Does it mean content quality, data accuracy, uptime, or UI polish? Not measurable.</td></tr>
+        <tr><td>"Should support"</td><td>Obligation level undefined. "Should" (RFC 2119) implies recommended, not mandatory — problematic for a binding SRS.</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">2. Impact of Vague Requirements on Planning and Testing</div>
+      <ul>
+        <li><strong>Performance planning:</strong> Without a user concurrency target, architects cannot make infrastructure decisions — cluster size, database sharding strategy, CDN tier, and caching policies all depend on load projections.</li>
+        <li><strong>Capacity testing:</strong> Load testing tools (JMeter, Locust) require a specific target user count and acceptance threshold. "Many users" cannot be parameterised into a test script.</li>
+        <li><strong>Acceptance criteria:</strong> QA teams cannot define pass/fail criteria for "responsive" or "high quality" — testing becomes subjective and inconclusive.</li>
+        <li><strong>Cost estimation:</strong> Cloud infrastructure cost modelling is impossible without defined concurrent user limits and throughput requirements.</li>
+        <li><strong>SLA definition:</strong> Contracts with clients cannot specify penalties or guarantees without numeric thresholds.</li>
+      </ul>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">3. Quality Attribute Categorisation</div>
+      <table>
+        <tr><th>Term</th><th>ISO 25010 Category</th><th>Sub-characteristic</th></tr>
+        <tr><td>Many users</td><td>Performance Efficiency</td><td>Capacity</td></tr>
+        <tr><td>Responsive</td><td>Performance Efficiency</td><td>Time Behaviour (response time, throughput)</td></tr>
+        <tr><td>High quality (uptime)</td><td>Reliability</td><td>Availability, Fault Tolerance</td></tr>
+        <tr><td>High quality (content)</td><td>Functional Suitability</td><td>Functional Correctness</td></tr>
+        <tr><td>High quality (UX)</td><td>Usability</td><td>User Interface Aesthetics, Learnability</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">4. Revised Requirements with Thresholds and Validation Criteria</div>
+      <div class="req-box">
+        <strong>NFR-CAP-01 · Concurrent User Capacity</strong>
+        The system shall support a minimum of 50,000 concurrent active users (students + instructors) without degradation of core functions. Peak load of 80,000 concurrent users shall be supported during examination periods.
+        <br><em>Validation: Load test using Apache JMeter with 80,000 virtual users, monitoring CPU ≤70%, memory ≤80%, error rate ≤0.1%.</em>
+      </div>
+      <div class="req-box">
+        <strong>NFR-PERF-01 · Response Time</strong>
+        Course content pages shall load within 2 seconds (95th percentile) under peak concurrent load. Video streams shall initiate playback within 3 seconds on a 10 Mbps connection.
+        <br><em>Validation: WebPageTest and synthetic monitoring from 3 geographic regions.</em>
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-REL-01 · Availability</strong>
+        The system shall maintain 99.95% monthly uptime (≤21.9 minutes downtime/month). Planned maintenance windows shall not exceed 2 hours/month and must be scheduled between 02:00–04:00 IST.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-QUAL-01 · Content Integrity</strong>
+        Submitted assessments shall be stored with zero data loss. Quiz results shall match student submissions with 100% accuracy, verified by end-to-end checksum validation.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 5 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">5</div>
+    <div class="q-scenario">
+      <div class="q-label">E-Commerce System · Security vs UX Trade-off</div>
+      <blockquote>"The system should be secure and provide a seamless user experience."</blockquote>
+      <div class="q-topic">Trade-off analysis · NFR classification · Architectural impact · Balanced refined requirements</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">1. Trade-offs and Conflicts Identified</div>
+      <table>
+        <tr><th>Security Requirement</th><th>UX Implication (Conflict)</th></tr>
+        <tr><td>Multi-Factor Authentication (MFA) on every login</td><td>Adds 15–30 seconds to login flow; frustrates returning users; high abandonment rate</td></tr>
+        <tr><td>Session timeout after 15 minutes of inactivity</td><td>Interrupts long browsing sessions; poor experience for comparison shoppers</td></tr>
+        <tr><td>CAPTCHA on checkout</td><td>Slows down transaction completion; friction for mobile users with small screens</td></tr>
+        <tr><td>Encrypted payload processing (server-side)</td><td>Adds latency to every API call; affects perceived responsiveness</td></tr>
+        <tr><td>Strict input sanitisation and form validation</td><td>May block valid edge-case inputs; error messages can confuse users</td></tr>
+      </table>
+      <div class="callout">
+        <strong>Core Conflict:</strong> Security increases friction (slows the user, adds steps); seamlessness reduces friction (fewer steps, faster flow). These are architecturally opposing forces that require deliberate trade-off decisions, not a single statement.
+      </div>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">2. NFR Classification</div>
+      <table>
+        <tr><th>Aspect</th><th>NFR Category (ISO 25010)</th></tr>
+        <tr><td>Secure (authentication, authorisation)</td><td>Security — Confidentiality, Integrity, Authenticity</td></tr>
+        <tr><td>Secure (data protection)</td><td>Security — Non-repudiation, Accountability</td></tr>
+        <tr><td>Seamless UX (speed)</td><td>Performance Efficiency — Time Behaviour</td></tr>
+        <tr><td>Seamless UX (ease)</td><td>Usability — Operability, User Error Protection</td></tr>
+        <tr><td>Seamless UX (satisfaction)</td><td>Usability — User Interface Aesthetics</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">3. Influence on Architectural and Design Decisions</div>
+      <ul>
+        <li><strong>Authentication architecture:</strong> Conflict drives adoption of Risk-Based Authentication (RBA) — MFA triggered only for anomalous login patterns (new device, foreign IP), not every login. This satisfies both parties.</li>
+        <li><strong>Session management:</strong> Sliding session windows (token refresh on activity) instead of hard timeouts balance security with continuity.</li>
+        <li><strong>API gateway design:</strong> Security enforcement (rate limiting, WAF, token validation) moves to the gateway layer so application APIs remain lightweight and fast.</li>
+        <li><strong>Checkout flow:</strong> Passive bot detection (device fingerprinting, behavioural analytics) replaces visible CAPTCHA — security without UX friction.</li>
+        <li><strong>Performance budgets:</strong> Architectural decision to set a latency budget (e.g., ≤100ms added by security middleware) to prevent security controls from degrading UX below threshold.</li>
+      </ul>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">4. Balanced Refined Requirement Set</div>
+      <div class="req-box danger">
+        <strong>NFR-SEC-01 · Authentication</strong>
+        The system shall enforce MFA only for high-risk login events (new device, unrecognised IP, 3+ failed attempts). Standard logins from trusted devices shall complete within 3 seconds total authentication time.
+      </div>
+      <div class="req-box danger">
+        <strong>NFR-SEC-02 · Data Encryption</strong>
+        All payment and PII data shall be encrypted in transit (TLS 1.3) and at rest (AES-256). Encryption overhead shall not add more than 50ms to checkout API response time.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-UX-01 · Checkout Performance</strong>
+        The checkout process (cart → payment confirmation) shall be completable within 4 user interactions and ≤90 seconds for 90% of users on a 4G mobile connection.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-UX-02 · Session Continuity</strong>
+        User sessions shall persist for 30 minutes of inactivity and be silently refreshed on activity, with a security re-challenge only after 8 hours of total session duration.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 6 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">6</div>
+    <div class="q-scenario">
+      <div class="q-label">Online Food Delivery Platform · Implementation Hindrance</div>
+      <blockquote>"The system should provide fast delivery, accurate orders, and a good customer experience."</blockquote>
+      <div class="q-topic">Problematic terms · Validation/verification difficulty · Requirement type · Reformulation</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">1. Problematic Terms and Phrases</div>
+      <table>
+        <tr><th>Term/Phrase</th><th>Why It Hinders Implementation</th></tr>
+        <tr><td><strong>"Fast"</strong></td><td>No unit of time. Developer cannot choose between optimising for 15 min, 30 min, or 60 min delivery. Leads to arbitrary design choices.</td></tr>
+        <tr><td><strong>"Accurate orders"</strong></td><td>Accuracy threshold missing. Is 98% accuracy acceptable? 99.9%? Without a target, no acceptance criterion can be coded or tested.</td></tr>
+        <tr><td><strong>"Good customer experience"</strong></td><td>Compound quality attribute with no breakdown. Cannot be translated into a UI design spec, API spec, or SLA clause.</td></tr>
+        <tr><td><strong>"Should"</strong></td><td>Ambiguous obligation. In IEEE 830 terminology, "shall" is mandatory; "should" is recommended. This ambiguity causes scope disagreements during delivery.</td></tr>
+        <tr><td><strong>Single compound sentence</strong></td><td>Three distinct requirements (logistics, data accuracy, UX) are combined — non-atomic, cannot be independently assigned, tracked, or tested.</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">2. Difficulties in Validation and Verification</div>
+      <ul>
+        <li><strong>No acceptance test possible:</strong> Testers cannot write a test case for "fast" without a threshold. The system cannot pass or fail an undefined criterion.</li>
+        <li><strong>Verification gap:</strong> SRS verification checks whether the requirement is correctly specified. These terms cannot pass verification as they violate completeness and precision.</li>
+        <li><strong>Validation gap:</strong> Validation checks that the right system is being built. "Good customer experience" does not map to any user story, prototype, or review criteria.</li>
+        <li><strong>Non-traceability:</strong> These requirements cannot be traced to design elements or code modules — breaking bidirectional traceability.</li>
+      </ul>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">3. Requirement Type Classification and Justification</div>
+      <table>
+        <tr><th>Implied Requirement</th><th>Type</th><th>Justification</th></tr>
+        <tr><td>Deliver orders (logistics function)</td><td><span class="badge badge-fn">Functional</span></td><td>Describes an action the system must perform — a behavioural function.</td></tr>
+        <tr><td>Fast delivery (time constraint)</td><td><span class="badge badge-nfn">Non-Functional</span></td><td>A performance quality attribute on the delivery function — not a new action.</td></tr>
+        <tr><td>Accurate order processing</td><td><span class="badge badge-fn">Functional</span></td><td>Describes correctness of data processing — what the system does with order data.</td></tr>
+        <tr><td>Good customer experience</td><td><span class="badge badge-nfn">Non-Functional</span></td><td>A usability and satisfaction quality — how the system behaves, not what it does.</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">4. Reformulated Requirements with Measurable Criteria</div>
+      <div class="req-box">
+        <strong>FR-01 · Order Processing</strong>
+        The system shall capture, validate, and transmit the complete order (items, quantities, customisations, delivery address) to the assigned restaurant within 10 seconds of customer confirmation.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-PERF-01 · Delivery Time SLA</strong>
+        Median delivery time shall not exceed 30 minutes from order confirmation to doorstep delivery for orders within a 5 km service radius, measured across ≥95% of completed orders per month.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-ACC-01 · Order Accuracy Rate</strong>
+        The system shall achieve an order accuracy rate of ≥99.2% (ratio of orders delivered as specified to total orders), measured monthly via delivery confirmation and customer dispute logs.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-UX-01 · App Performance</strong>
+        The home screen shall render fully within 1.5 seconds on a 4G connection. The order-placement flow shall require no more than 5 steps from item selection to payment confirmation.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 7 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">7</div>
+    <div class="q-scenario">
+      <div class="q-label">Hospital Management System · Role-Specific Requirements</div>
+      <blockquote>"The system must be reliable, quick, and easy to use for all users."</blockquote>
+      <div class="q-topic">Stakeholder perspective · Requirement category breakdown · Ambiguity impact · Quantifiable role-specific constraints</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">1. Stakeholder Perspectives and Conflicts</div>
+      <table>
+        <tr><th>Quality</th><th>Doctor's Perspective</th><th>Administrator's Perspective</th><th>Conflict</th></tr>
+        <tr><td>Reliable</td><td>Never lose patient data mid-consultation; always accessible 24/7 during emergencies</td><td>Reports are always accurate; audit logs are never corrupted</td><td>Clinical uptime vs. data integrity — different reliability dimensions</td></tr>
+        <tr><td>Quick</td><td>Patient chart opens in under 1 second; drug lookup is instant</td><td>Report generation may take minutes; batch export is acceptable overnight</td><td>Real-time vs. batch processing performance expectations are incompatible</td></tr>
+        <tr><td>Easy to use</td><td>Minimal clicks during consultation; touch-friendly during ward rounds</td><td>Familiar spreadsheet-like interface for data management; Excel export option</td><td>Clinical UI vs. administrative UI have contradictory design needs</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">2. Breakdown into Distinct Requirement Categories</div>
+      <table>
+        <tr><th>Term</th><th>Category</th><th>Sub-attribute</th></tr>
+        <tr><td>Reliable</td><td>Non-Functional — Reliability</td><td>Availability, Fault Tolerance, Recoverability</td></tr>
+        <tr><td>Quick (clinical)</td><td>Non-Functional — Performance Efficiency</td><td>Response Time Behaviour</td></tr>
+        <tr><td>Quick (admin batch)</td><td>Non-Functional — Performance Efficiency</td><td>Throughput</td></tr>
+        <tr><td>Easy to use (clinical)</td><td>Non-Functional — Usability</td><td>Operability, Learnability</td></tr>
+        <tr><td>Easy to use (admin)</td><td>Non-Functional — Usability</td><td>User Interface Aesthetics, Operability</td></tr>
+        <tr><td>Patient data access</td><td>Functional</td><td>Data Retrieval</td></tr>
+        <tr><td>Report generation</td><td>Functional</td><td>Data Processing / Reporting</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">3. Impact of Ambiguity on System Design Decisions</div>
+      <ul>
+        <li><strong>Database design:</strong> "Quick" for doctors implies read-optimised (OLTP) schema with indexed patient records. "Quick" for admins implies analytical queries (OLAP) with aggregation support. Ambiguity may lead to a single database designed for neither.</li>
+        <li><strong>UI/UX architecture:</strong> Without role-specific usability requirements, a single UI may be designed that satisfies neither clinical nor administrative users — a common failure in HMS projects.</li>
+        <li><strong>Infrastructure sizing:</strong> Not knowing the reliability target (99.9% vs 99.99%) leads to under- or over-provisioning of hardware, with significant cost implications.</li>
+        <li><strong>Testing strategy:</strong> Ambiguous performance requirements prevent the creation of meaningful performance baselines and load test scripts, leading to inadequate pre-launch testing.</li>
+      </ul>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">4. Redefined Requirements with Quantifiable, Role-Specific Constraints</div>
+      <div class="req-box">
+        <strong>NFR-PERF-01 · Clinical Response Time [Role: Doctors]</strong>
+        Patient medical records (summary view with last 10 visit notes) shall load within 1 second for 99th percentile of requests during peak hours (08:00–18:00), supporting 500 concurrent clinical users.
+      </div>
+      <div class="req-box">
+        <strong>NFR-PERF-02 · Admin Report Generation [Role: Administrators]</strong>
+        Monthly administrative and billing reports for up to 5,000 patient records shall complete within 3 minutes. Bulk data exports (>10,000 records) may be processed as scheduled overnight batch jobs completing before 06:00.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-REL-01 · System Uptime</strong>
+        The system shall maintain 99.9% availability (≤8.7 hours unplanned downtime/year). During any failure, automatic failover shall restore full clinical functionality within 60 seconds with no data loss.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-USE-01 · Clinical Usability [Role: Doctors]</strong>
+        A qualified doctor shall access a patient's complete visit history using ≤3 navigation actions. The clinical interface shall be operable on a 10-inch tablet during ward rounds without a mouse.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-USE-02 · Admin Usability [Role: Administrators]</strong>
+        Administrative staff with basic computer literacy shall complete a full patient billing cycle within 10 minutes after ≤4 hours of system training, with a task-success rate of ≥92% in post-training assessment.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 8 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">8</div>
+    <div class="q-scenario">
+      <div class="q-label">Cloud-Based LMS · Extended Analysis (parallel to Q4)</div>
+      <blockquote>"The system should support many users, be responsive, and ensure high quality."</blockquote>
+      <div class="q-topic">Critical evaluation · Vague requirements impact · Quality attributes · Revised requirements</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">1. Critical Evaluation — Missing Specification Details</div>
+      <ul>
+        <li><strong>"Many users":</strong> No numeric definition. Missing: registered vs concurrent users, geographic distribution (single campus vs global), peak periods (exam season), and user roles (students, instructors, admins).</li>
+        <li><strong>"Responsive":</strong> No latency target, no benchmark operation defined, no network condition assumptions. A system may be responsive for text but not for video streaming.</li>
+        <li><strong>"High quality":</strong> Not linked to any quality model. Quality in an LMS context could mean: content delivery fidelity, grading accuracy, uptime, or user satisfaction — none of which are equivalent.</li>
+        <li><strong>Missing constraints:</strong> No SLA defined, no regulatory compliance referenced (FERPA, GDPR for student data), no disaster recovery objective stated.</li>
+      </ul>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">2. Impact on Performance Planning and Testing</div>
+      <ul>
+        <li><strong>Capacity planning failure:</strong> Cloud infrastructure (VM instances, database replicas, CDN nodes) cannot be right-sized without a user count. Over-provisioning wastes money; under-provisioning causes outages during exams.</li>
+        <li><strong>Load test design:</strong> Performance test scenarios (normal load, stress, spike) require specific user counts and think-time distributions. "Many users" yields no test parameters.</li>
+        <li><strong>SLA negotiation:</strong> An institution purchasing the LMS cannot hold the vendor accountable without numeric SLAs — "high quality" is not contractually enforceable.</li>
+        <li><strong>Regression baseline:</strong> Performance regression tests need a baseline (e.g., page load &lt;2s). Without it, any degradation can be dismissed as "still within acceptable quality."</li>
+      </ul>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">3. Categorisation into Quality Attributes (ISO 25010)</div>
+      <table>
+        <tr><th>Implied Requirement</th><th>ISO 25010 Characteristic</th><th>Sub-characteristic</th></tr>
+        <tr><td>Support many users</td><td>Performance Efficiency</td><td>Capacity</td></tr>
+        <tr><td>Be responsive</td><td>Performance Efficiency</td><td>Time behaviour</td></tr>
+        <tr><td>High quality (uptime)</td><td>Reliability</td><td>Availability</td></tr>
+        <tr><td>High quality (content)</td><td>Functional Suitability</td><td>Functional correctness</td></tr>
+        <tr><td>High quality (UX)</td><td>Usability</td><td>Learnability, Operability</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">4. Revised Requirements with Clear Thresholds</div>
+      <div class="req-box">
+        <strong>NFR-CAP-01 · Concurrent Users</strong>
+        The system shall support 75,000 concurrent active users (accessing courses, submitting assignments, or attending live sessions simultaneously), scaling to 150,000 during examination windows without exceeding a 5% increase in median response time.
+      </div>
+      <div class="req-box">
+        <strong>NFR-RESP-01 · Page Response Time</strong>
+        Course landing pages and assignment pages shall achieve a Largest Contentful Paint (LCP) of ≤2.5 seconds on a 4G connection (10 Mbps, 50ms RTT). Live video sessions shall buffer ≤500ms on a 5 Mbps connection.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-REL-01 · Availability</strong>
+        The LMS shall achieve 99.95% monthly availability. Planned maintenance shall occur within declared windows (midnight–03:00 local time) with 72-hour advance notice.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-QUAL-01 · Assessment Integrity</strong>
+        Assignment submissions and quiz responses shall be stored with zero data loss. Grade calculations shall match instructor-defined rubrics with 100% accuracy, verified by automated regression test suite on every release.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 9 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">9</div>
+    <div class="q-scenario">
+      <div class="q-label">E-Commerce System · Security–UX Conflict (Extended)</div>
+      <blockquote>"The system should be secure and provide a seamless user experience."</blockquote>
+      <div class="q-topic">Trade-off analysis · NFR classification · Architectural impact · Balanced refined requirements</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">1. Potential Trade-offs and Conflicts</div>
+      <table>
+        <tr><th>Security Measure</th><th>UX Impact</th><th>Tension Type</th></tr>
+        <tr><td>Mandatory MFA for all logins</td><td>Adds authentication steps; 20–30% login abandonment risk</td><td>Security ↔ Efficiency</td></tr>
+        <tr><td>Aggressive session expiry (15 min)</td><td>Disrupts long shopping sessions; cart data loss perception</td><td>Security ↔ Continuity</td></tr>
+        <tr><td>Strict CSRF and SameSite cookie policies</td><td>Breaks third-party integrations (social login, widgets)</td><td>Security ↔ Interoperability</td></tr>
+        <tr><td>TLS handshake and payload encryption</td><td>Adds 50–80ms latency; noticeable on slow connections</td><td>Security ↔ Performance</td></tr>
+        <tr><td>Rate limiting on search/browsing APIs</td><td>May throttle legitimate power users; frustrates large-catalogue browsing</td><td>Security ↔ Usability</td></tr>
+      </table>
+      <div class="callout">
+        <strong>Design Principle:</strong> The goal is not to eliminate this trade-off but to manage it through <em>risk-adaptive security</em> — applying stronger security controls proportional to the risk level of each action, not uniformly across all interactions.
+      </div>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">2. NFR Classification</div>
+      <table>
+        <tr><th>Aspect</th><th>ISO 25010 Category</th><th>Sub-characteristic</th></tr>
+        <tr><td>Authentication / authorisation</td><td>Security</td><td>Authenticity, Confidentiality</td></tr>
+        <tr><td>Data protection (PII, payment)</td><td>Security</td><td>Integrity, Non-repudiation</td></tr>
+        <tr><td>Checkout speed</td><td>Performance Efficiency</td><td>Time Behaviour</td></tr>
+        <tr><td>Ease of navigation</td><td>Usability</td><td>Operability</td></tr>
+        <tr><td>User satisfaction</td><td>Usability</td><td>User Interface Aesthetics</td></tr>
+        <tr><td>System uptime</td><td>Reliability</td><td>Availability</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">3. Influence on Architectural and Design Decisions</div>
+      <ul>
+        <li><strong>Identity architecture:</strong> Adopt Risk-Based Authentication (RBA): low-risk logins (same device, same IP) use password only; high-risk logins (new device, geo anomaly) require OTP. This satisfies security without universal friction.</li>
+        <li><strong>API gateway layer:</strong> Centralise security controls (WAF, DDoS protection, rate limiting, JWT validation) at the gateway — keeps application layer fast and decoupled from security policy.</li>
+        <li><strong>Token strategy:</strong> Use short-lived access tokens (15 min) with silent background refresh using long-lived refresh tokens (30 days). Users never see re-authentication unless truly at risk.</li>
+        <li><strong>Separation of concerns:</strong> Security architects define the threat model and controls; UX team defines interaction flows within those controls. Architecture enforces boundaries so neither team overrides the other.</li>
+        <li><strong>Privacy by design:</strong> Minimise PII collected; tokenise payment data via PCI-DSS compliant vault — reduces security surface area without impacting user flow.</li>
+      </ul>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">4. Refined Balanced Requirement Set</div>
+      <div class="req-box danger">
+        <strong>NFR-SEC-01 · Risk-Adaptive Authentication</strong>
+        Standard logins from recognised devices/IP shall complete within 3 seconds using single-factor auth. High-risk logins (new device, new geography, or ≥3 failed attempts) shall require OTP-based MFA.
+      </div>
+      <div class="req-box danger">
+        <strong>NFR-SEC-02 · Payment Data Protection</strong>
+        All payment card data shall be tokenised via a PCI-DSS Level 1 compliant vault. Raw card numbers shall never be stored or transmitted through application servers.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-UX-01 · Checkout Latency</strong>
+        The end-to-end checkout flow (add to cart → payment confirmation) shall be completable in ≤60 seconds for 95% of users, with ≤5 user interactions required, on a standard 4G mobile connection.
+      </div>
+      <div class="req-box nfn">
+        <strong>NFR-UX-02 · Session Management</strong>
+        Authenticated sessions shall persist silently for 8 hours of continuous use without re-prompting. Sessions idle for &gt;60 minutes shall display a 60-second re-authentication warning before expiry.
+      </div>
+      <div class="req-box">
+        <strong>NFR-PERF-01 · Security Overhead Budget</strong>
+        All security middleware (authentication checks, input sanitisation, CSRF validation) collectively shall add no more than 80ms to API response times at the 95th percentile.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- QUESTION 10 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="q-card">
+  <div class="q-header">
+    <div class="q-num">10</div>
+    <div class="q-scenario">
+      <div class="q-label">Fintech Digital Payment Platform · Architecture Design</div>
+      <blockquote>Single-tier monolithic architecture causing performance bottlenecks and deployment delays. Requirements: web+mobile users, 3rd-party gateways, real-time transactions, high availability at peak.</blockquote>
+      <div class="q-topic">Monolith limitations · Component decomposition · Data flow analysis · Revised architecture proposal</div>
+    </div>
+  </div>
+  <div class="q-body">
+
+    <div class="ans-section">
+      <div class="section-title">1. Structural Limitations of the Monolithic Architecture</div>
+      <table>
+        <tr><th>Limitation</th><th>Impact on System</th></tr>
+        <tr><td><strong>Single deployment unit</strong></td><td>Any change (bug fix, feature) requires full system redeployment → deployment delays, higher risk per release, zero-downtime deployment is impractical.</td></tr>
+        <tr><td><strong>No independent scaling</strong></td><td>Cannot scale only the transaction processing component during peak load — the entire monolith must scale horizontally, wasting resources on idle modules (e.g., reporting).</td></tr>
+        <tr><td><strong>Single point of failure</strong></td><td>A crash in one module (e.g., notification service) brings down all payment processing functions — violates high availability requirement.</td></tr>
+        <tr><td><strong>Tight coupling</strong></td><td>Integrating new third-party payment gateways requires changes that ripple through the entire codebase — high change impact, high regression risk.</td></tr>
+        <tr><td><strong>Technology lock-in</strong></td><td>All components share the same runtime, language, and framework. Cannot adopt best-fit technologies for specific concerns (e.g., a high-throughput message broker).</td></tr>
+        <tr><td><strong>Poor maintainability</strong></td><td>As codebase grows, interdependencies increase exponentially (Conway's Law effects). Onboarding new developers becomes slow; debugging is complex.</td></tr>
+      </table>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">2. Logical Architectural Components and Responsibilities</div>
+      <div class="arch-row">
+        <div class="arch-box highlight">
+          <div class="arch-label">Client Layer</div>
+          <div class="arch-title">Web + Mobile Apps</div>
+          <p>React/Angular web app; iOS/Android native apps. Communicates with backend exclusively via API Gateway. No business logic.</p>
+        </div>
+        <div class="arch-box highlight">
+          <div class="arch-label">Entry Point</div>
+          <div class="arch-title">API Gateway</div>
+          <p>Routes requests, enforces authentication (JWT), rate limiting, SSL termination, load balancing. Single ingress point.</p>
+        </div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-box">
+          <div class="arch-label">Core Service</div>
+          <div class="arch-title">User & Auth Service</div>
+          <p>Registration, login, OAuth2/MFA, session management, role-based access control.</p>
+        </div>
+        <div class="arch-box">
+          <div class="arch-label">Core Service</div>
+          <div class="arch-title">Transaction Service</div>
+          <p>Real-time payment initiation, validation, idempotency checks, transaction state machine management.</p>
+        </div>
+        <div class="arch-box">
+          <div class="arch-label">Core Service</div>
+          <div class="arch-title">Payment Gateway Adapter</div>
+          <p>Adapter pattern for 3rd-party integrations (Stripe, Razorpay, PayPal). Abstracts gateway-specific APIs; supports adding new gateways without code changes in Transaction Service.</p>
+        </div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-box">
+          <div class="arch-label">Supporting Service</div>
+          <div class="arch-title">Notification Service</div>
+          <p>Sends SMS, email, and push notifications asynchronously via message queue. Failures do not block transactions.</p>
+        </div>
+        <div class="arch-box">
+          <div class="arch-label">Supporting Service</div>
+          <div class="arch-title">Audit & Reporting</div>
+          <p>Consumes event stream; builds compliance audit logs, OLAP-style reports, regulatory reports (RBI, SEBI). Read-only replica database.</p>
+        </div>
+        <div class="arch-box">
+          <div class="arch-label">Infrastructure</div>
+          <div class="arch-title">Message Broker</div>
+          <p>Kafka / RabbitMQ for async event-driven communication between services. Decouples producers from consumers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">3. Data Flow and Component Interaction Analysis</div>
+      <ul>
+        <li><strong>Synchronous (real-time):</strong> Client → API Gateway → Transaction Service → Payment Gateway Adapter → External Gateway → Response propagated back synchronously. Critical path; must be optimised for latency (&lt;500ms end-to-end).</li>
+        <li><strong>Asynchronous (event-driven):</strong> Transaction Service publishes a <em>TransactionCompleted</em> event to the message broker. Notification Service and Audit Service consume this event independently — failures in either do not affect transaction processing.</li>
+        <li><strong>Data isolation:</strong> Each microservice owns its own database (Database-per-Service pattern). Transaction Service uses a high-performance relational DB (PostgreSQL with read replicas). Audit Service uses a columnar analytics store (Redshift/BigQuery).</li>
+        <li><strong>Bottleneck analysis:</strong> The Payment Gateway Adapter is a natural bottleneck — external API rate limits and latency. Mitigation: connection pooling, circuit breakers (Hystrix/Resilience4j), and retry with exponential backoff.</li>
+        <li><strong>Consistency model:</strong> Eventual consistency between Transaction Service and Audit Service (acceptable). Strong consistency within Transaction Service using database transactions and idempotency keys (mandatory for payment correctness).</li>
+      </ul>
+    </div>
+
+    <div class="ans-section">
+      <div class="section-title">4. Proposed Architecture and Justification</div>
+      <div class="callout">
+        <strong>Proposed Architecture: Microservices with Event-Driven Communication, deployed on Kubernetes</strong>
+      </div>
+      <table>
+        <tr><th>Architecture Decision</th><th>Improvement Over Monolith</th></tr>
+        <tr>
+          <td><strong>Microservices decomposition</strong></td>
+          <td><strong>Modularity:</strong> Each service is independently deployable. A change to the Notification Service does not require redeploying Transaction Service — deployment frequency increases, release risk decreases.</td>
+        </tr>
+        <tr>
+          <td><strong>Kubernetes with Horizontal Pod Autoscaling (HPA)</strong></td>
+          <td><strong>Scalability:</strong> Transaction Service pods auto-scale from 3 → 30 replicas during peak load within 60 seconds. Other services remain at baseline — resource efficiency improved.</td>
+        </tr>
+        <tr>
+          <td><strong>Circuit Breaker pattern (Resilience4j)</strong></td>
+          <td><strong>Fault Isolation:</strong> If an external payment gateway is slow, the circuit breaker opens — upstream Transaction Service fails fast and returns an error instead of hanging. Prevents cascading failure.</td>
+        </tr>
+        <tr>
+          <td><strong>Kafka event streaming</strong></td>
+          <td><strong>Decoupling:</strong> Notification and Audit services consume events at their own pace. A spike in transaction volume buffers in Kafka rather than overwhelming downstream services.</td>
+        </tr>
+        <tr>
+          <td><strong>API Gateway (Kong/AWS API GW)</strong></td>
+          <td><strong>Security + Routing:</strong> Centralises auth, rate limiting, and routing — simplifies each microservice (no duplicate auth code) and provides a single observability point.</td>
+        </tr>
+        <tr>
+          <td><strong>Multi-AZ deployment</strong></td>
+          <td><strong>High Availability:</strong> Services deployed across 3 Availability Zones. A zone failure reduces capacity by one-third but does not cause a total outage — supports 99.99% SLA.</td>
+        </tr>
+      </table>
+      <div class="req-box gold">
+        <strong>Summary Justification</strong>
+        The proposed microservices architecture addresses all identified monolith limitations: independent deployability solves deployment delays; targeted scaling solves performance bottlenecks; circuit breakers and multi-AZ deployment solve the single-point-of-failure problem; the adapter pattern solves third-party gateway integration coupling. Each service aligns with a bounded domain context (DDD principle), ensuring long-term maintainability.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9999aa;margin-top:40px;border-top:1px solid #d4d0c8;padding-top:20px;letter-spacing:1.5px;">
+  SE SAP ZC344 · MID SEMESTER EXAM · MODEL ANSWER KEY · BITS PILANI · 2026
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
