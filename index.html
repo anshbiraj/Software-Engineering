@@ -1,0 +1,2508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Engineering – Complete Chapter Notes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&display=swap');
+
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --surface2: #f0ede6;
+  --ink: #1c1917;
+  --ink2: #44403c;
+  --ink3: #78716c;
+  --accent: #b45309;
+  --accent-soft: #fef3c7;
+  --blue: #1e40af;
+  --blue-soft: #dbeafe;
+  --green: #166534;
+  --green-soft: #dcfce7;
+  --red: #991b1b;
+  --red-soft: #fee2e2;
+  --purple: #6b21a8;
+  --purple-soft: #f3e8ff;
+  --teal: #115e59;
+  --teal-soft: #ccfbf1;
+  --border: #e7e5e0;
+  --border2: #d4d0c8;
+  --sidebar-w: 280px;
+  --header-h: 60px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+/* ── TOP HEADER ── */
+.top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--header-h);
+  background: var(--ink);
+  display: flex; align-items: center;
+  padding: 0 24px;
+  border-bottom: 3px solid var(--accent);
+}
+.top-bar-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+.top-bar-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #a8a29e;
+  margin-left: 20px;
+  letter-spacing: 1px;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--ink);
+  overflow-y: auto;
+  z-index: 90;
+  padding: 16px 0 40px;
+  border-right: 1px solid #292524;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: #44403c; border-radius: 2px; }
+
+.sidebar-section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #78716c;
+  padding: 14px 20px 6px;
+}
+.sidebar a {
+  display: block;
+  padding: 7px 20px 7px 24px;
+  text-decoration: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 11.5px;
+  color: #a8a29e;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.sidebar a:hover { color: #fff; border-left-color: var(--accent); background: rgba(255,255,255,0.04); }
+.sidebar a.active { color: #fff; border-left-color: var(--accent); background: rgba(180,83,9,0.12); }
+.sidebar a .ch-num {
+  font-size: 9px;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 1px;
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  margin-left: var(--sidebar-w);
+  margin-top: var(--header-h);
+  padding: 48px 60px 100px;
+  max-width: calc(var(--sidebar-w) + 860px);
+}
+
+/* ── CHAPTER SECTIONS ── */
+.chapter {
+  margin-bottom: 80px;
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+.chapter-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px 32px;
+  background: var(--ink);
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+}
+.ch-badge {
+  background: var(--accent);
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+.chapter-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.chapter-header .ch-subtitle {
+  font-size: 13px;
+  color: #a8a29e;
+  font-family: 'DM Mono', monospace;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+.chapter-body {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 36px 40px;
+}
+
+/* ── TOPIC SECTIONS ── */
+.topic {
+  margin-bottom: 36px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.topic:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+.topic-title {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topic-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.subtopic {
+  margin: 18px 0 10px;
+}
+.subtopic-title {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink2);
+  margin-bottom: 8px;
+  padding-left: 12px;
+  border-left: 2px solid var(--border2);
+}
+
+p { margin-bottom: 10px; }
+p:last-child { margin-bottom: 0; }
+
+/* ── DEFINITION BOXES ── */
+.def-box {
+  background: var(--accent-soft);
+  border: 1px solid #fcd34d;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+.def-box .def-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.info-box {
+  background: var(--blue-soft);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+.info-box .info-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+
+.green-box {
+  background: var(--green-soft);
+  border-left: 4px solid var(--green);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+.green-box .green-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.purple-box {
+  background: var(--purple-soft);
+  border-left: 4px solid var(--purple);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+.warn-box {
+  background: var(--red-soft);
+  border-left: 4px solid var(--red);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+.warn-box .warn-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+
+/* ── TABLES ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 14px 0;
+}
+th {
+  background: var(--ink);
+  color: #fff;
+  padding: 9px 14px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.65;
+  font-size: 14.5px;
+}
+tr:nth-child(even) td { background: var(--surface2); }
+
+/* ── LISTS ── */
+ul, ol { padding-left: 22px; margin: 8px 0 12px; }
+li { margin-bottom: 5px; line-height: 1.75; font-size: 15px; }
+li strong { color: var(--ink); }
+
+/* ── DIAGRAM CONTAINERS ── */
+.diagram-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 24px 20px 16px;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+.diagram-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  text-align: center;
+  margin-bottom: 16px;
+}
+.diagram-wrap svg { display: block; margin: 0 auto; }
+
+/* ── COMPARISON GRID ── */
+.cmp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 14px 0;
+}
+.cmp-card {
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.cmp-card-head {
+  background: var(--ink);
+  color: #fff;
+  padding: 8px 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.cmp-card-body {
+  padding: 12px 14px;
+  font-size: 14px;
+}
+.cmp-card-body li { margin-bottom: 4px; }
+
+/* ── KEY POINTS ── */
+.key-points {
+  background: linear-gradient(135deg, #1c1917 0%, #292524 100%);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.key-points-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.key-points li {
+  color: #e7e5e0;
+  font-size: 14.5px;
+  margin-bottom: 6px;
+}
+.key-points li::marker { color: var(--accent); }
+
+/* ── BADGES ── */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 1px 2px;
+  vertical-align: middle;
+}
+.badge-blue { background: var(--blue-soft); color: var(--blue); }
+.badge-green { background: var(--green-soft); color: var(--green); }
+.badge-amber { background: var(--accent-soft); color: var(--accent); }
+.badge-purple { background: var(--purple-soft); color: var(--purple); }
+.badge-red { background: var(--red-soft); color: var(--red); }
+.badge-teal { background: var(--teal-soft); color: var(--teal); }
+
+/* ── CODE / FORMULA ── */
+code {
+  font-family: 'DM Mono', monospace;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+/* ── STEPS / PROCESS ── */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+}
+.steps li {
+  counter-increment: step;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+.steps li::before {
+  content: counter(step);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+/* ── SCROLLBAR ── */
+.main::-webkit-scrollbar { width: 6px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .main { margin-left: 0; padding: 24px 20px 60px; }
+  .cmp-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="top-bar">
+  <span class="top-bar-title">Software Engineering — Complete Notes</span>
+  <span class="top-bar-sub">SE SAP ZC344 · BITS Pilani · 2024</span>
+</header>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-section-label">Foundations</div>
+  <a href="#ch1"><span class="ch-num">Chapter 1</span>Software &amp; Software Engineering</a>
+  <a href="#ch2"><span class="ch-num">Chapter 2</span>Process Models</a>
+  <a href="#ch3"><span class="ch-num">Chapter 3</span>Agile Development</a>
+  <a href="#ch28"><span class="ch-num">Chapter 28/32</span>Professional Ethics</a>
+
+  <div class="sidebar-section-label">Requirements</div>
+  <a href="#ch4"><span class="ch-num">Chapter 4</span>Understanding Requirements</a>
+  <a href="#ch5"><span class="ch-num">Chapter 5</span>Requirements Modeling</a>
+  <a href="#ch6"><span class="ch-num">Chapter 6</span>Requirements Engineering Tasks</a>
+
+  <div class="sidebar-section-label">Design</div>
+  <a href="#ch9"><span class="ch-num">Chapter 9</span>Design Concepts</a>
+  <a href="#ch10"><span class="ch-num">Chapter 10</span>Architectural Design</a>
+  <a href="#ch11"><span class="ch-num">Chapter 11</span>Component-Level Design</a>
+  <a href="#ch12"><span class="ch-num">Chapter 12</span>User Interface Design</a>
+
+  <div class="sidebar-section-label">Model Questions & Answers</div>
+  <a href="index2.html"><span class="sidebar-section-label">Model Questions</span>Answer Key</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 1: SOFTWARE AND SOFTWARE ENGINEERING -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch1">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 1</span></div>
+    <div>
+      <h2>Software and Software Engineering</h2>
+      <div class="ch-subtitle">Pressman · Nature of software · SE layers · Generic process framework · Umbrella activities</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">1.1 Nature of Software</div>
+      <div class="def-box">
+        <div class="def-label">Definition</div>
+        <strong>Software</strong> is: (1) instructions (programs) that when executed provide desired features, function, and performance; (2) data structures that enable programs to adequately store and manipulate information; and (3) documentation that describes the operation and use of programs.
+      </div>
+      <p>Software is a <strong>logical rather than physical</strong> system element. It does not wear out — it deteriorates due to <em>change</em> (the bathtub curve does not apply; the failure curve shows increasing failures as changes are made).</p>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Characteristics that distinguish software from hardware</div>
+        <table>
+          <tr><th>Characteristic</th><th>Hardware</th><th>Software</th></tr>
+          <tr><td>Manufacturing</td><td>Physical fabrication</td><td>Engineering (design/development)</td></tr>
+          <tr><td>Failure curve</td><td>Bathtub curve — wears out</td><td>Deteriorates via change, not wear</td></tr>
+          <tr><td>Custom-built</td><td>Assembled from components</td><td>Custom-built (components are emerging)</td></tr>
+          <tr><td>Delivery</td><td>Tangible product</td><td>Intangible — logic &amp; information</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Software Change Problem</div>
+        <p>As software ages and is modified, its structure degrades — producing an "upward sloping" failure rate. This is why <strong>software maintenance</strong> is the most costly phase (often 60–80% of total lifecycle cost).</p>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-title">Software Failure Curve — Deterioration via Change</div>
+        <svg width="600" height="200" viewBox="0 0 600 200">
+          <defs>
+            <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#44403c" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <!-- Axes -->
+          <line x1="60" y1="160" x2="560" y2="160" stroke="#44403c" stroke-width="1.5" marker-end="url(#arr1)"/>
+          <line x1="60" y1="160" x2="60" y2="20" stroke="#44403c" stroke-width="1.5" marker-end="url(#arr1)"/>
+          <text x="310" y="190" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#78716c">Time</text>
+          <text x="18" y="95" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#78716c" transform="rotate(-90,18,95)">Failure Rate</text>
+          <!-- Ideal curve - flat then slight rise -->
+          <path d="M80,120 Q200,115 380,118 Q420,120 460,130 Q490,138 540,148" fill="none" stroke="#1e40af" stroke-width="2.5" stroke-dasharray="6 3"/>
+          <!-- Actual curve - rises with each change spike -->
+          <path d="M80,120 Q150,118 200,117 L200,90 Q210,115 230,116 Q280,115 300,114 L300,80 Q312,110 330,112 Q380,112 400,110 L400,72 Q415,108 430,112 Q470,116 540,130" fill="none" stroke="#b45309" stroke-width="2.5"/>
+          <!-- Labels -->
+          <text x="390" y="144" font-family="DM Mono" font-size="10" fill="#1e40af">Ideal</text>
+          <text x="430" y="104" font-family="DM Mono" font-size="10" fill="#b45309">Actual</text>
+          <!-- Spikes labels -->
+          <text x="185" y="86" font-family="DM Mono" font-size="9" fill="#78716c">change</text>
+          <text x="285" y="76" font-family="DM Mono" font-size="9" fill="#78716c">change</text>
+          <text x="385" y="68" font-family="DM Mono" font-size="9" fill="#78716c">change</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">1.2 Software Application Domains</div>
+      <table>
+        <tr><th>Domain</th><th>Description</th><th>Example</th></tr>
+        <tr><td><strong>System software</strong></td><td>Serves other programs; heavy interaction with computer hardware</td><td>OS, compilers, device drivers</td></tr>
+        <tr><td><strong>Application software</strong></td><td>Solves a specific business need</td><td>ERP, payroll, inventory</td></tr>
+        <tr><td><strong>Engineering/scientific</strong></td><td>"Number crunching" algorithms</td><td>CAD, simulation, astronomy</td></tr>
+        <tr><td><strong>Embedded software</strong></td><td>Resides within a product to control features &amp; functions</td><td>Automotive ECU, microwave</td></tr>
+        <tr><td><strong>Product-line software</strong></td><td>Provides a specific capability for many different customers</td><td>Word processors, spreadsheets</td></tr>
+        <tr><td><strong>Web/mobile applications</strong></td><td>Network-centric, browser or mobile-based</td><td>E-commerce, social media apps</td></tr>
+        <tr><td><strong>AI software</strong></td><td>Non-numerical algorithms, pattern recognition</td><td>ML models, expert systems, NLP</td></tr>
+      </table>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">1.3 Software Engineering Definition and Layers</div>
+      <div class="def-box">
+        <div class="def-label">IEEE Definition</div>
+        Software Engineering is the application of a <strong>systematic, disciplined, quantifiable approach</strong> to the development, operation, and maintenance of software; that is, the application of engineering to software.
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-title">The Four Layers of Software Engineering (Pressman)</div>
+        <svg width="560" height="220" viewBox="0 0 560 220">
+          <!-- Layer 4: Tools -->
+          <rect x="40" y="20" width="480" height="42" rx="4" fill="#b45309" fill-opacity="0.15" stroke="#b45309" stroke-width="1.5"/>
+          <text x="280" y="37" text-anchor="middle" font-family="Fraunces, serif" font-size="14" font-weight="700" fill="#92400e">Tools</text>
+          <text x="280" y="53" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#78716c">CASE tools, IDEs, automated testing frameworks</text>
+          <!-- Layer 3: Methods -->
+          <rect x="40" y="67" width="480" height="42" rx="4" fill="#1e40af" fill-opacity="0.12" stroke="#1e40af" stroke-width="1.5"/>
+          <text x="280" y="84" text-anchor="middle" font-family="Fraunces, serif" font-size="14" font-weight="700" fill="#1e3a8a">Methods</text>
+          <text x="280" y="100" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#78716c">Technical HOW-TOs — analysis, design, coding, testing, maintenance</text>
+          <!-- Layer 2: Process -->
+          <rect x="40" y="114" width="480" height="42" rx="4" fill="#166534" fill-opacity="0.12" stroke="#166534" stroke-width="1.5"/>
+          <text x="280" y="131" text-anchor="middle" font-family="Fraunces, serif" font-size="14" font-weight="700" fill="#14532d">Process</text>
+          <text x="280" y="147" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#78716c">Framework that holds layers together — defines sequence, deliverables, milestones</text>
+          <!-- Layer 1: Quality Focus -->
+          <rect x="40" y="161" width="480" height="42" rx="4" fill="#1c1917" fill-opacity="0.88" stroke="#1c1917" stroke-width="1.5"/>
+          <text x="280" y="178" text-anchor="middle" font-family="Fraunces, serif" font-size="14" font-weight="700" fill="#fef3c7">Quality Focus</text>
+          <text x="280" y="195" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#a8a29e">Foundation — commitment to quality underpins everything</text>
+        </svg>
+      </div>
+      <p>The four layers rest on a <strong>quality focus</strong> (bedrock). The <strong>process layer</strong> provides the framework; <strong>methods</strong> provide the technical how-to knowledge; <strong>tools</strong> provide semi-automated support.</p>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">1.4 Generic Software Process Framework</div>
+      <p>A process framework defines a small number of <strong>framework activities</strong> applicable to all software projects. Pressman's generic framework has five activities:</p>
+      <div class="diagram-wrap">
+        <div class="diagram-title">Five Generic Framework Activities</div>
+        <svg width="580" height="90" viewBox="0 0 580 90">
+          <defs>
+            <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#44403c" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <!-- Boxes -->
+          <rect x="10"  y="20" width="96" height="44" rx="6" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+          <rect x="122" y="20" width="96" height="44" rx="6" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+          <rect x="234" y="20" width="96" height="44" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+          <rect x="346" y="20" width="96" height="44" rx="6" fill="#f3e8ff" stroke="#6b21a8" stroke-width="1.5"/>
+          <rect x="458" y="20" width="96" height="44" rx="6" fill="#fee2e2" stroke="#991b1b" stroke-width="1.5"/>
+          <!-- Labels -->
+          <text x="58"  y="39" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#1e3a8a" font-weight="500">Communication</text>
+          <text x="58"  y="52" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Understand goals</text>
+          <text x="170" y="39" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#14532d" font-weight="500">Planning</text>
+          <text x="170" y="52" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Estimates &amp; schedule</text>
+          <text x="282" y="39" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#92400e" font-weight="500">Modeling</text>
+          <text x="282" y="52" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Analysis &amp; design</text>
+          <text x="394" y="39" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#4c1d95" font-weight="500">Construction</text>
+          <text x="394" y="52" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Code &amp; test</text>
+          <text x="506" y="39" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#7f1d1d" font-weight="500">Deployment</text>
+          <text x="506" y="52" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Deliver &amp; feedback</text>
+          <!-- Arrows -->
+          <line x1="106" y1="42" x2="120" y2="42" stroke="#44403c" stroke-width="1.5" marker-end="url(#arr2)"/>
+          <line x1="218" y1="42" x2="232" y2="42" stroke="#44403c" stroke-width="1.5" marker-end="url(#arr2)"/>
+          <line x1="330" y1="42" x2="344" y2="42" stroke="#44403c" stroke-width="1.5" marker-end="url(#arr2)"/>
+          <line x1="442" y1="42" x2="456" y2="42" stroke="#44403c" stroke-width="1.5" marker-end="url(#arr2)"/>
+        </svg>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Umbrella Activities (run across all framework activities)</div>
+        <ul>
+          <li><strong>Software project tracking and control</strong> — monitor progress against the plan</li>
+          <li><strong>Risk management</strong> — assess risks that may affect outcome or quality</li>
+          <li><strong>Software quality assurance (SQA)</strong> — activities to ensure quality</li>
+          <li><strong>Technical reviews</strong> — assess work products to uncover and remove errors</li>
+          <li><strong>Software configuration management (SCM)</strong> — manage change throughout lifecycle</li>
+          <li><strong>Reusability management</strong> — define criteria for work product reuse</li>
+          <li><strong>Work product preparation and production</strong> — activities to create models, documents, logs, forms, and lists</li>
+          <li><strong>Measurement</strong> — define and collect process, project, and product measures</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">1.5 Software Myths</div>
+      <table>
+        <tr><th>Myth</th><th>Reality</th></tr>
+        <tr><td>We already have a book full of standards — that's enough</td><td>Standards are only useful if applied, if they're known to software engineers, and if they're comprehensive</td></tr>
+        <tr><td>Adding programmers to a late project makes it earlier</td><td>Brooks's Law: "Adding manpower to a late software project makes it later." New people need ramp-up time and create communication overhead.</td></tr>
+        <tr><td>Once software is written and works, the job is done</td><td>50–80% of effort occurs after software is delivered (maintenance)</td></tr>
+        <tr><td>Until the program is running, there's no way to assess quality</td><td>Reviews, walkthroughs, and inspections can find 60–90% of defects before coding begins</td></tr>
+        <tr><td>The only deliverable is the working program</td><td>Documentation, models, test plans, and all work products are deliverables</td></tr>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 2: PROCESS MODELS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch2">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 2</span></div>
+    <div>
+      <h2>Process Models</h2>
+      <div class="ch-subtitle">Waterfall · Incremental · RAD · Evolutionary · Unified · Concurrent · Component-based · Formal methods</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">2.1 Prescriptive Process Models</div>
+      <div class="def-box">
+        <div class="def-label">Definition</div>
+        A <strong>software process model</strong> is an abstract representation of a software process — a description from a particular perspective of a process. Prescriptive process models advocate an orderly approach to SE.
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Waterfall Model (Classic Life Cycle)</div>
+        <p>Oldest and most widely used paradigm. Demands a systematic, sequential approach. Each phase must be completed before the next begins.</p>
+        <div class="diagram-wrap">
+          <div class="diagram-title">Waterfall Model — Sequential Phases</div>
+          <svg width="560" height="280" viewBox="0 0 560 280">
+            <defs>
+              <marker id="wa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round"/>
+              </marker>
+              <marker id="wa2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#b45309" stroke-width="1.5" stroke-linecap="round"/>
+              </marker>
+            </defs>
+            <!-- Phase boxes (staircase) -->
+            <rect x="20"  y="20"  width="160" height="44" rx="5" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+            <rect x="90"  y="74"  width="160" height="44" rx="5" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+            <rect x="160" y="128" width="160" height="44" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+            <rect x="230" y="182" width="160" height="44" rx="5" fill="#f3e8ff" stroke="#6b21a8" stroke-width="1.5"/>
+            <rect x="300" y="236" width="160" height="44" rx="5" fill="#fee2e2" stroke="#991b1b" stroke-width="1.5"/>
+            <!-- Labels -->
+            <text x="100" y="38"  text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#1e3a8a">Communication</text>
+            <text x="100" y="53"  text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Requirements elicitation</text>
+            <text x="170" y="92"  text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#14532d">Planning</text>
+            <text x="170" y="107" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Estimation, scheduling, risk</text>
+            <text x="240" y="146" text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#92400e">Modeling</text>
+            <text x="240" y="161" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Analysis and design</text>
+            <text x="310" y="200" text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#4c1d95">Construction</text>
+            <text x="310" y="215" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Code generation and testing</text>
+            <text x="380" y="254" text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#7f1d1d">Deployment</text>
+            <text x="380" y="269" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Delivery, support, feedback</text>
+            <!-- Forward arrows -->
+            <path d="M100 64 L100 72 L152 72" stroke="#1e40af" stroke-width="1.5" fill="none" marker-end="url(#wa)"/>
+            <path d="M170 118 L170 126 L222 126" stroke="#166534" stroke-width="1.5" fill="none" marker-end="url(#wa)"/>
+            <path d="M240 172 L240 180 L292 180" stroke="#b45309" stroke-width="1.5" fill="none" marker-end="url(#wa)"/>
+            <path d="M310 226 L310 234 L362 234" stroke="#6b21a8" stroke-width="1.5" fill="none" marker-end="url(#wa)"/>
+            <!-- Feedback arrows -->
+            <path d="M448 258 Q510 258 510 42 L182 42" stroke="#b45309" stroke-width="1" stroke-dasharray="4 3" fill="none" marker-end="url(#wa2)"/>
+            <text x="520" y="150" font-family="DM Mono" font-size="9" fill="#b45309" transform="rotate(90,520,150)">Feedback loop</text>
+          </svg>
+        </div>
+        <div class="warn-box">
+          <div class="warn-label">Problems with Waterfall</div>
+          Real projects rarely follow the sequential flow; requirements are difficult to state completely at the start; a working version is not available until late in the project; it is inflexible to change.
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Incremental Process Model</div>
+        <p>Combines linear and parallel flow. Multiple sequences are applied with each sequence producing a deliverable <em>increment</em>. Earlier increments serve as basic versions; later increments add capabilities.</p>
+        <div class="info-box">
+          <div class="info-label">Key Idea</div>
+          The first increment is often a <strong>core product</strong>. Subsequent increments add features based on feedback. This reduces risk and allows early delivery of partial functionality.
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">RAD — Rapid Application Development</div>
+        <p>A high-speed adaptation of the linear sequential model using component-based construction. Suitable for systems that can be modularised. Uses a very short development cycle (60–90 days).</p>
+        <p><strong>RAD Phases:</strong> Business Modeling → Data Modeling → Process Modeling → Application Generation → Testing and Turnover</p>
+        <div class="warn-box">
+          <div class="warn-label">RAD Disadvantages</div>
+          Requires sufficient human resources for parallel teams; not appropriate for technically risky or non-modularisable systems; unsuitable when interoperability with existing systems is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">2.2 Evolutionary Process Models</div>
+      <p>Evolutionary models are iterative — the engineer develops increasingly complete versions of software. They accommodate changing requirements and deliver working versions early.</p>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Prototyping Model</div>
+        <p>A prototype is a working model of part of the software. It is used to help stakeholders clarify requirements. The prototype is typically discarded after requirements are clear (throwaway prototyping).</p>
+        <div class="diagram-wrap">
+          <div class="diagram-title">Prototyping Paradigm</div>
+          <svg width="540" height="110" viewBox="0 0 540 110">
+            <defs>
+              <marker id="pr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#44403c" stroke-width="1.5" stroke-linecap="round"/>
+              </marker>
+            </defs>
+            <rect x="10"  y="30" width="110" height="44" rx="5" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+            <rect x="150" y="30" width="110" height="44" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+            <rect x="290" y="30" width="110" height="44" rx="5" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+            <rect x="420" y="30" width="110" height="44" rx="5" fill="#f3e8ff" stroke="#6b21a8" stroke-width="1.5"/>
+            <text x="65"  y="49" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#1e3a8a" font-weight="500">Listen to</text>
+            <text x="65"  y="62" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#1e3a8a" font-weight="500">customer</text>
+            <text x="205" y="49" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#92400e" font-weight="500">Build/revise</text>
+            <text x="205" y="62" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#92400e" font-weight="500">mock-up</text>
+            <text x="345" y="49" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#14532d" font-weight="500">Customer tests</text>
+            <text x="345" y="62" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#14532d" font-weight="500">mock-up</text>
+            <text x="475" y="49" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#4c1d95" font-weight="500">Prototype</text>
+            <text x="475" y="62" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#4c1d95" font-weight="500">approved?</text>
+            <!-- Arrows -->
+            <line x1="120" y1="52" x2="148" y2="52" stroke="#44403c" stroke-width="1.5" marker-end="url(#pr)"/>
+            <line x1="260" y1="52" x2="288" y2="52" stroke="#44403c" stroke-width="1.5" marker-end="url(#pr)"/>
+            <line x1="400" y1="52" x2="418" y2="52" stroke="#44403c" stroke-width="1.5" marker-end="url(#pr)"/>
+            <!-- Feedback loop -->
+            <path d="M420 74 L420 98 L150 98 L150 76" stroke="#b45309" stroke-width="1" stroke-dasharray="4 3" fill="none" marker-end="url(#pr)"/>
+            <text x="285" y="94" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#b45309">Iterate</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Spiral Model (Boehm, 1988)</div>
+        <p>The spiral model is a <strong>risk-driven</strong> process model. It couples the iterative nature of prototyping with the controlled, systematic aspects of the waterfall model. Each loop of the spiral represents a phase of the process.</p>
+        <div class="diagram-wrap">
+          <div class="diagram-title">Spiral Model — Four Quadrants</div>
+          <svg width="420" height="340" viewBox="0 0 420 340">
+            <!-- Quadrant labels -->
+            <text x="80"  y="18" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#991b1b" font-weight="500">Planning</text>
+            <text x="340" y="18" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#1e40af" font-weight="500">Risk Analysis</text>
+            <text x="80"  y="332" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#b45309" font-weight="500">Customer Eval.</text>
+            <text x="340" y="332" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#166534" font-weight="500">Engineering</text>
+            <!-- Center cross -->
+            <line x1="210" y1="30" x2="210" y2="310" stroke="#d4d0c8" stroke-width="1" stroke-dasharray="4 3"/>
+            <line x1="30"  y1="170" x2="390" y2="170" stroke="#d4d0c8" stroke-width="1" stroke-dasharray="4 3"/>
+            <!-- Spiral loops (approximate) -->
+            <ellipse cx="210" cy="170" rx="40"  ry="28"  fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <ellipse cx="210" cy="170" rx="80"  ry="56"  fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <ellipse cx="210" cy="170" rx="120" ry="84"  fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <ellipse cx="210" cy="170" rx="160" ry="112" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <!-- Center dot -->
+            <circle cx="210" cy="170" r="5" fill="#b45309"/>
+            <!-- Loop labels -->
+            <text x="210" y="148" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Concept</text>
+            <text x="210" y="110" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Development</text>
+            <text x="210" y="70"  text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Enhancement</text>
+            <text x="210" y="36"  text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Maintenance</text>
+          </svg>
+        </div>
+        <ul>
+          <li><strong>Quadrant 1 (Planning):</strong> Determine objectives, alternatives, constraints</li>
+          <li><strong>Quadrant 2 (Risk Analysis):</strong> Evaluate alternatives, identify &amp; resolve risks</li>
+          <li><strong>Quadrant 3 (Engineering):</strong> Develop next-level product</li>
+          <li><strong>Quadrant 4 (Customer Evaluation):</strong> Assess results, plan next iteration</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Concurrent Development Model</div>
+        <p>All activities exist simultaneously but in different states. Uses a network of activities that are triggered by events. Activities such as analysis, design, and coding are all potentially active at the same time.</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">2.3 Unified Process (UP)</div>
+      <p>The Unified Process (UP), popularised by Ivar Jacobson, Grady Booch, and James Rumbaugh, is a <strong>use-case driven, architecture-centric, iterative and incremental</strong> software process framework.</p>
+      <table>
+        <tr><th>Phase</th><th>Purpose</th><th>Primary Workflows</th></tr>
+        <tr><td><strong>Inception</strong></td><td>Establish the business case; identify scope</td><td>Business modeling, requirements</td></tr>
+        <tr><td><strong>Elaboration</strong></td><td>Analyse the problem domain; establish architectural foundation</td><td>Requirements, analysis &amp; design</td></tr>
+        <tr><td><strong>Construction</strong></td><td>Develop the system incrementally</td><td>Implementation, testing</td></tr>
+        <tr><td><strong>Transition</strong></td><td>Transfer the system to users</td><td>Deployment, configuration</td></tr>
+      </table>
+      <div class="info-box">
+        <div class="info-label">Key UP Concept</div>
+        UP organises work into <strong>disciplines</strong> (Business Modeling, Requirements, Analysis &amp; Design, Implementation, Testing, Deployment) which are active to varying degrees in each phase, visualised as the "hump diagram."
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">2.4 Component-Based Development (CBD)</div>
+      <p>CBD incorporates pre-packaged <strong>software components</strong> (COTS — Commercial Off-The-Shelf) into software. The process emphasises finding existing components and integrating them rather than building from scratch.</p>
+      <div class="steps">
+        <li>Identify candidate components from a component repository</li>
+        <li>Evaluate and select components that meet requirements</li>
+        <li>Design the architecture to accommodate selected components</li>
+        <li>Integrate components and conduct regression testing</li>
+        <li>Deploy and deliver the composite system</li>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">2.5 Formal Methods Model</div>
+      <p>The formal methods model encompasses activities that lead to a <strong>mathematical specification</strong> of computer software. Formal methods allow a software engineer to specify, develop, and verify a computer-based system using rigorous mathematical notation.</p>
+      <div class="cmp-grid">
+        <div class="cmp-card">
+          <div class="cmp-card-head">Advantages</div>
+          <div class="cmp-card-body">
+            <ul>
+              <li>Rigorous, unambiguous specification</li>
+              <li>Can prove correctness mathematically</li>
+              <li>Detects inconsistencies/ambiguities early</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cmp-card">
+          <div class="cmp-card-head">Disadvantages</div>
+          <div class="cmp-card-body">
+            <ul>
+              <li>Requires specialised mathematical training</li>
+              <li>Not cost-effective for all systems</li>
+              <li>Difficult to model non-functional requirements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 3: AGILE DEVELOPMENT -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch3">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 3</span></div>
+    <div>
+      <h2>Agile Development</h2>
+      <div class="ch-subtitle">Agile Manifesto · Scrum · XP · Kanban · Agile principles · Velocity · Sprint planning</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">3.1 What is Agility?</div>
+      <div class="def-box">
+        <div class="def-label">Agility Defined</div>
+        Agility means effective response to change. An agile team is able to respond to change quickly — through continuous feedback, close customer collaboration, self-organisation, and lightweight but sufficient processes.
+      </div>
+      <p><strong>Agility principles</strong> (Pressman's 12 criteria):</p>
+      <ol>
+        <li>Customer satisfaction through early and continuous delivery of valuable software</li>
+        <li>Welcome changing requirements, even late in development</li>
+        <li>Deliver working software frequently (weeks rather than months)</li>
+        <li>Business people and developers work together daily</li>
+        <li>Build projects around motivated individuals; give them the environment and support they need</li>
+        <li>Face-to-face conversation is the most efficient form of communication</li>
+        <li>Working software is the primary measure of progress</li>
+        <li>Sustainable development pace — sponsors, developers, and users should be able to maintain a constant pace indefinitely</li>
+        <li>Continuous attention to technical excellence and good design enhances agility</li>
+        <li>Simplicity — the art of maximising the amount of work not done — is essential</li>
+        <li>The best architectures, requirements, and designs emerge from self-organising teams</li>
+        <li>At regular intervals, the team reflects on how to become more effective</li>
+      </ol>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">3.2 Agile Manifesto (2001)</div>
+      <div class="key-points">
+        <div class="key-points-label">Four Core Values</div>
+        <ul>
+          <li><strong>Individuals and interactions</strong> over processes and tools</li>
+          <li><strong>Working software</strong> over comprehensive documentation</li>
+          <li><strong>Customer collaboration</strong> over contract negotiation</li>
+          <li><strong>Responding to change</strong> over following a plan</li>
+        </ul>
+      </div>
+      <p><em>Note: The items on the right are valued, but those on the left are valued more.</em></p>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">3.3 Extreme Programming (XP)</div>
+      <p>XP is the most widely used agile process. It organises software development around the activities: <strong>planning → designing → coding → testing</strong>.</p>
+
+      <div class="subtopic">
+        <div class="subtopic-title">XP Planning (The Planning Game)</div>
+        <ul>
+          <li>Customer creates <strong>user stories</strong> — short descriptions of required functionality</li>
+          <li>XP team assesses each story and assigns a <strong>cost</strong> (in development weeks)</li>
+          <li>Stories are grouped into <strong>releases</strong> (small increments)</li>
+          <li>Each release contains <strong>iterations</strong> (1–3 weeks each)</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">XP Core Practices</div>
+        <table>
+          <tr><th>Practice</th><th>Description</th></tr>
+          <tr><td><strong>Pair Programming</strong></td><td>Two programmers work at one workstation. One writes code ("driver"), the other reviews ("navigator"). Roles rotate.</td></tr>
+          <tr><td><strong>Test-Driven Development (TDD)</strong></td><td>Write unit tests before writing code. Tests guide implementation and act as specification.</td></tr>
+          <tr><td><strong>Refactoring</strong></td><td>Continuously restructure existing code to improve design without changing observable behaviour.</td></tr>
+          <tr><td><strong>Continuous Integration</strong></td><td>Code is integrated and tested multiple times per day. Integration errors are detected quickly.</td></tr>
+          <tr><td><strong>Simple Design</strong></td><td>The simplest design that passes all tests. No speculative generality — YAGNI (You Aren't Gonna Need It).</td></tr>
+          <tr><td><strong>On-Site Customer</strong></td><td>A real customer representative is part of the team and available full time for questions.</td></tr>
+          <tr><td><strong>Collective Code Ownership</strong></td><td>Any developer can modify any part of the codebase at any time — no code ownership.</td></tr>
+          <tr><td><strong>Coding Standards</strong></td><td>All code follows agreed conventions to support collective ownership.</td></tr>
+          <tr><td><strong>40-Hour Week</strong></td><td>Overtime two consecutive weeks signals a problem. Sustainable pace protects quality.</td></tr>
+          <tr><td><strong>Small Releases</strong></td><td>Releases should be as small as possible — every feature available to customers sooner.</td></tr>
+          <tr><td><strong>System Metaphor</strong></td><td>A simple shared story that describes how the whole system works.</td></tr>
+          <tr><td><strong>Planning Game</strong></td><td>Rapid determination of scope of the next release by combining business priorities and technical estimates.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">3.4 Scrum</div>
+      <p>Scrum is a framework within which people can address complex adaptive problems, while productively and creatively delivering products of the highest possible value.</p>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Scrum Roles</div>
+        <table>
+          <tr><th>Role</th><th>Responsibilities</th></tr>
+          <tr><td><strong>Product Owner</strong></td><td>Represents stakeholders; owns and prioritises the Product Backlog; defines acceptance criteria; maximises product value</td></tr>
+          <tr><td><strong>Scrum Master</strong></td><td>Servant-leader for the team; removes impediments; facilitates Scrum events; protects the team from external interference; coaches on Scrum</td></tr>
+          <tr><td><strong>Development Team</strong></td><td>Cross-functional, self-organising team (3–9 people); responsible for delivering a potentially shippable product increment each sprint</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Scrum Artifacts</div>
+        <ul>
+          <li><strong>Product Backlog:</strong> Ordered list of everything that might be needed in the product. The Product Owner is responsible for its content and ordering.</li>
+          <li><strong>Sprint Backlog:</strong> Set of Product Backlog items selected for the Sprint plus a plan for delivering the product Increment and achieving the Sprint Goal.</li>
+          <li><strong>Increment:</strong> Sum of all Product Backlog items completed during a Sprint plus the value of all previous increments. Must be "Done" and usable.</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Scrum Events (Ceremonies)</div>
+        <div class="diagram-wrap">
+          <div class="diagram-title">Scrum Sprint Flow</div>
+          <svg width="560" height="150" viewBox="0 0 560 150">
+            <defs>
+              <marker id="sc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#44403c" stroke-width="1.5" stroke-linecap="round"/>
+              </marker>
+            </defs>
+            <!-- Product Backlog -->
+            <rect x="10" y="20" width="100" height="110" rx="5" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+            <text x="60" y="40" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#1e3a8a" font-weight="500">Product</text>
+            <text x="60" y="53" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#1e3a8a" font-weight="500">Backlog</text>
+            <text x="60" y="74" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Prioritised</text>
+            <text x="60" y="86" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">requirements</text>
+            <!-- Sprint Planning -->
+            <rect x="126" y="50" width="90" height="50" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+            <text x="171" y="70" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#92400e" font-weight="500">Sprint</text>
+            <text x="171" y="83" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#92400e" font-weight="500">Planning</text>
+            <!-- Sprint box -->
+            <rect x="232" y="20" width="170" height="110" rx="5" fill="#dcfce7" stroke="#166534" stroke-width="2"/>
+            <text x="317" y="38" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#14532d" font-weight="500">Sprint (1–4 weeks)</text>
+            <rect x="244" y="44" width="146" height="34" rx="4" fill="#fff" stroke="#166534" stroke-width="1"/>
+            <text x="317" y="58" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#14532d">Sprint Backlog</text>
+            <text x="317" y="70" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Daily Scrum (15 min)</text>
+            <text x="317" y="100" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Sprint Review &amp;</text>
+            <text x="317" y="112" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Retrospective</text>
+            <!-- Increment -->
+            <rect x="420" y="20" width="120" height="110" rx="5" fill="#f3e8ff" stroke="#6b21a8" stroke-width="1.5"/>
+            <text x="480" y="50" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#4c1d95" font-weight="500">Potentially</text>
+            <text x="480" y="63" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#4c1d95" font-weight="500">Shippable</text>
+            <text x="480" y="76" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#4c1d95" font-weight="500">Increment</text>
+            <!-- Arrows -->
+            <line x1="110" y1="75" x2="124" y2="75" stroke="#44403c" stroke-width="1.5" marker-end="url(#sc)"/>
+            <line x1="216" y1="75" x2="230" y2="75" stroke="#44403c" stroke-width="1.5" marker-end="url(#sc)"/>
+            <line x1="402" y1="75" x2="418" y2="75" stroke="#44403c" stroke-width="1.5" marker-end="url(#sc)"/>
+          </svg>
+        </div>
+        <table>
+          <tr><th>Event</th><th>Duration</th><th>Purpose</th></tr>
+          <tr><td><strong>Sprint</strong></td><td>1–4 weeks</td><td>Time-box in which a "Done" increment is created</td></tr>
+          <tr><td><strong>Sprint Planning</strong></td><td>≤8 hrs/4-week sprint</td><td>Team plans the work for the Sprint; Sprint Goal defined</td></tr>
+          <tr><td><strong>Daily Scrum (Stand-up)</strong></td><td>15 minutes</td><td>Synchronise activities; inspect progress; identify impediments</td></tr>
+          <tr><td><strong>Sprint Review</strong></td><td>≤4 hrs/4-week sprint</td><td>Demonstrate increment to stakeholders; inspect and adapt backlog</td></tr>
+          <tr><td><strong>Sprint Retrospective</strong></td><td>≤3 hrs/4-week sprint</td><td>Inspect team process; create improvement plan for next sprint</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Scrum Velocity and Burndown</div>
+        <p><strong>Velocity</strong> is the amount of work a team can complete in a single sprint, measured in story points. Used for sprint planning and release forecasting.</p>
+        <p><strong>Burndown chart</strong> tracks remaining work (story points) against time in a sprint. Ideal line shows linear progress; actual line reveals impediments.</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">3.5 Kanban</div>
+      <p>Kanban is a lean, flow-based approach to software development. It is not prescriptive about roles, events, or time-boxes.</p>
+      <div class="info-box">
+        <div class="info-label">Core Kanban Principles</div>
+        <ul>
+          <li><strong>Visualise work:</strong> All work items are visible on a Kanban board</li>
+          <li><strong>Limit WIP (Work In Progress):</strong> Each column has a maximum number of items — prevents bottlenecks</li>
+          <li><strong>Manage flow:</strong> Monitor the flow of work; measure cycle time and lead time</li>
+          <li><strong>Make process policies explicit</strong></li>
+          <li><strong>Implement feedback loops:</strong> Regular cadences for retrospective and review</li>
+          <li><strong>Improve collaboratively, evolve experimentally</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">3.6 Agile vs. Traditional Process Models</div>
+      <table>
+        <tr><th>Criterion</th><th>Traditional (Plan-Driven)</th><th>Agile</th></tr>
+        <tr><td>Requirements</td><td>Fixed upfront; change is controlled</td><td>Evolving; change is welcomed</td></tr>
+        <tr><td>Documentation</td><td>Comprehensive documentation required</td><td>Just enough documentation</td></tr>
+        <tr><td>Customer involvement</td><td>At start and end</td><td>Continuous throughout</td></tr>
+        <tr><td>Delivery</td><td>Big-bang at project end</td><td>Frequent incremental releases</td></tr>
+        <tr><td>Team structure</td><td>Specialised roles, managed hierarchy</td><td>Cross-functional, self-organising</td></tr>
+        <tr><td>Suitable for</td><td>Well-understood, stable requirements; safety-critical systems</td><td>Evolving requirements; innovative products</td></tr>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- PART 2: Chapters 28/32, 4, 5, 6 — to be merged into final file -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 28/32: PROFESSIONAL ETHICS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch28">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 28 / 32</span></div>
+    <div>
+      <h2>Professional Ethics in Software Engineering</h2>
+      <div class="ch-subtitle">SE Code of Ethics · ACM/IEEE Code · Professional responsibility · Privacy · IP · Safety</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">28.1 What is Professional Ethics?</div>
+      <div class="def-box">
+        <div class="def-label">Definition</div>
+        Professional ethics concerns the <strong>moral obligations and responsibilities</strong> of professionals towards their clients, employers, colleagues, the profession, and society at large. For software engineers, it encompasses integrity, competence, honesty, and the public good.
+      </div>
+      <p>Because software permeates every aspect of modern life — healthcare, finance, transportation, communication — the ethical choices of software engineers have profound societal implications.</p>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">28.2 ACM/IEEE Software Engineering Code of Ethics (8 Principles)</div>
+      <p>The ACM/IEEE-CS Joint Task Force developed the Software Engineering Code of Ethics and Professional Practice. It defines eight principles:</p>
+      <table>
+        <tr><th>#</th><th>Principle</th><th>Core Obligation</th></tr>
+        <tr><td>1</td><td><strong>PUBLIC</strong></td><td>Act consistently with the public interest. Software engineers shall place the safety, health and welfare of the public above all other considerations.</td></tr>
+        <tr><td>2</td><td><strong>CLIENT AND EMPLOYER</strong></td><td>Act in a manner that is in the best interests of client and employer, consistent with the public interest.</td></tr>
+        <tr><td>3</td><td><strong>PRODUCT</strong></td><td>Ensure that their products and related modifications meet the highest professional standards possible. Software engineers shall produce quality work.</td></tr>
+        <tr><td>4</td><td><strong>JUDGMENT</strong></td><td>Maintain integrity and independence in their professional judgment. Avoid deception; not misrepresent work.</td></tr>
+        <tr><td>5</td><td><strong>MANAGEMENT</strong></td><td>Software engineering managers and leaders shall subscribe to and promote an ethical approach. Managers must not require engineers to violate the code.</td></tr>
+        <tr><td>6</td><td><strong>PROFESSION</strong></td><td>Advance the integrity and reputation of the profession, consistent with the public interest.</td></tr>
+        <tr><td>7</td><td><strong>COLLEAGUES</strong></td><td>Be fair to and supportive of colleagues. Assist fellow engineers in adhering to the code.</td></tr>
+        <tr><td>8</td><td><strong>SELF</strong></td><td>Participate in lifelong learning. Continuing education; maintain current technical competence; improve own ability to produce quality work.</td></tr>
+      </table>
+      <div class="info-box">
+        <div class="info-label">Mnemonic</div>
+        <strong>PC PM PC S</strong> — Public, Client, Product, Management, Profession, Colleagues, Self (or use PCPMJPC-S)
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">28.3 Key Ethical Issues in Software Engineering</div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Intellectual Property (IP)</div>
+        <p>Software is protected by <strong>copyright</strong> (automatically), <strong>patents</strong> (explicit registration), and <strong>trade secrets</strong>. Ethical obligations include:</p>
+        <ul>
+          <li>Not copying or distributing software without proper license</li>
+          <li>Respecting open-source licenses (GPL, MIT, Apache)</li>
+          <li>Not reverse-engineering proprietary software without authorisation</li>
+          <li>Properly attributing third-party code and libraries</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Privacy and Data Protection</div>
+        <p>Software engineers who build systems that collect, process, or store personal data have obligations to:</p>
+        <ul>
+          <li>Collect only necessary data (<strong>data minimisation</strong>)</li>
+          <li>Protect data against unauthorised access (<strong>confidentiality</strong>)</li>
+          <li>Allow users to know, correct, and delete their data (<strong>data subject rights</strong>)</li>
+          <li>Disclose data breaches promptly</li>
+          <li>Comply with regulations: GDPR (Europe), IT Act (India), HIPAA (USA healthcare)</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Computer Crime and Misuse</div>
+        <p>Ethical software engineers do not:</p>
+        <ul>
+          <li>Develop malware, spyware, or ransomware</li>
+          <li>Access computer systems without authorisation</li>
+          <li>Build systems intended to defraud or harm users</li>
+          <li>Assist in surveillance without legal authority</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Safety-Critical Systems</div>
+        <p>Software engineers working on systems where failures could cause death or serious injury (medical devices, aircraft control, nuclear systems) have heightened ethical obligations:</p>
+        <ul>
+          <li>Rigorous verification and validation</li>
+          <li>Conservative design — fail-safe defaults</li>
+          <li>Transparency about known limitations and failure modes</li>
+          <li>Not certifying software as safe without proper evidence</li>
+        </ul>
+        <div class="warn-box">
+          <div class="warn-label">Notable Case: Therac-25</div>
+          A radiation therapy machine (1985–87) that delivered massive radiation overdoses due to software race conditions, killing several patients. Illustrates the life-or-death consequences of software quality failures and the ethical obligations of software engineers.
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Whistleblowing</div>
+        <p>If an engineer believes an employer is violating the code of ethics and internal remedies have failed, they may be obligated to report to external authorities (<strong>whistleblowing</strong>). The code places public welfare above employer loyalty when public safety is at risk.</p>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">AI and Algorithmic Ethics</div>
+        <ul>
+          <li><strong>Bias and fairness:</strong> ML systems may encode historical biases that discriminate against protected groups</li>
+          <li><strong>Transparency:</strong> Users and affected parties should understand how automated decisions are made</li>
+          <li><strong>Accountability:</strong> Engineers are responsible for the systems they build even after deployment</li>
+          <li><strong>Consent:</strong> Data used to train AI should be obtained with proper consent</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">28.4 Professional Competence and Responsibility</div>
+      <p>A software engineer must:</p>
+      <ul>
+        <li>Only accept work they are competent to perform</li>
+        <li>Acknowledge when they need help or are outside their expertise</li>
+        <li>Maintain professional development through continuous learning</li>
+        <li>Be honest about estimates, deadlines, and technical limitations</li>
+        <li>Not agree to unrealistic schedules or quality compromises under management pressure</li>
+      </ul>
+      <div class="green-box">
+        <div class="green-label">Golden Rule</div>
+        <strong>Do not produce software that you would be unwilling to take responsibility for.</strong> If you would be embarrassed or ashamed to have your name associated with the software, it probably shouldn't be shipped.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 4: UNDERSTANDING REQUIREMENTS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch4">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 4</span></div>
+    <div>
+      <h2>Understanding Requirements</h2>
+      <div class="ch-subtitle">RE tasks · Elicitation techniques · Problem analysis · Validation · Negotiation · Requirement types</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">4.1 Requirements Engineering</div>
+      <div class="def-box">
+        <div class="def-label">Definition</div>
+        <strong>Requirements Engineering (RE)</strong> is a systematic process of developing requirements through an iterative cooperative process of analysing the problem, documenting the resulting observations in a variety of representation formats, and checking the accuracy of the understanding gained.
+      </div>
+      <p>RE sits at the <strong>interface between software engineering and systems engineering</strong>. Poor requirements are the most common cause of project failure.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-title">Requirements Engineering Bridge</div>
+        <svg width="540" height="100" viewBox="0 0 540 100">
+          <rect x="10"  y="28" width="140" height="44" rx="6" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+          <rect x="390" y="28" width="140" height="44" rx="6" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+          <rect x="190" y="20" width="160" height="60" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+          <text x="80"  y="46" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#1e3a8a" font-weight="500">System</text>
+          <text x="80"  y="60" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#1e3a8a" font-weight="500">Engineering</text>
+          <text x="460" y="46" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#14532d" font-weight="500">Software</text>
+          <text x="460" y="60" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#14532d" font-weight="500">Engineering</text>
+          <text x="270" y="44" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#92400e" font-weight="500">Requirements</text>
+          <text x="270" y="58" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#92400e" font-weight="500">Engineering</text>
+          <text x="270" y="70" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">(the bridge)</text>
+          <line x1="150" y1="50" x2="188" y2="50" stroke="#44403c" stroke-width="1.5"/>
+          <line x1="352" y1="50" x2="388" y2="50" stroke="#44403c" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">4.2 Types of Requirements</div>
+      <table>
+        <tr><th>Type</th><th>Definition</th><th>Examples</th></tr>
+        <tr>
+          <td><span class="badge badge-blue">Functional</span></td>
+          <td>Describe what the system shall do — specific behaviour, functions, or services</td>
+          <td>"The system shall allow users to place an order"; "The system shall generate monthly invoices"</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-purple">Non-Functional (NFR)</span></td>
+          <td>Constraints on the system or its development — quality attributes</td>
+          <td>Performance, security, availability, usability, maintainability</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-amber">Domain</span></td>
+          <td>Requirements from the application domain that reflect characteristics and constraints of the domain</td>
+          <td>Medical: "The system shall comply with HL7 standards"; Banking: "Audit logs must be retained for 7 years"</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-green">User Requirements</span></td>
+          <td>Natural language statements of what the system should provide and the constraints under which it operates</td>
+          <td>"Users should be able to search for products by name or category"</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-teal">System Requirements</span></td>
+          <td>Detailed, structured description of the functions, services, and constraints — forms the basis for design</td>
+          <td>Formal SRS with precise, testable, unambiguous statements</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">4.3 Requirements Engineering Tasks</div>
+      <div class="steps">
+        <li><strong>Inception:</strong> Understand the problem, who wants the solution, and why. Establish the basic understanding of the problem and stakeholders.</li>
+        <li><strong>Elicitation:</strong> Gather requirements from all stakeholders using various techniques. The most critical and difficult step.</li>
+        <li><strong>Elaboration:</strong> Expand and refine the initial requirements. Develop analysis models (use cases, activity diagrams).</li>
+        <li><strong>Negotiation:</strong> Resolve conflicts between stakeholder requirements. Prioritise and agree on scope.</li>
+        <li><strong>Specification:</strong> Document requirements in a formal Software Requirements Specification (SRS) using IEEE 830.</li>
+        <li><strong>Validation:</strong> Review specifications to ensure correctness, consistency, completeness, and verifiability.</li>
+        <li><strong>Management:</strong> Track and control changes to requirements throughout the project lifecycle.</li>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">4.4 Requirements Elicitation Techniques</div>
+      <table>
+        <tr><th>Technique</th><th>Description</th><th>Best Used When</th></tr>
+        <tr><td><strong>Interviews</strong></td><td>Structured or unstructured conversations with stakeholders. Structured: predefined questions. Unstructured: open conversation.</td><td>Gathering detailed information from individual stakeholders</td></tr>
+        <tr><td><strong>Questionnaires / Surveys</strong></td><td>Written questions distributed to many stakeholders simultaneously</td><td>Large number of geographically dispersed stakeholders</td></tr>
+        <tr><td><strong>Observation (Ethnographic)</strong></td><td>Analyst observes users in their actual work environment</td><td>Understanding implicit/tacit requirements that users cannot articulate</td></tr>
+        <tr><td><strong>Workshops (JAD)</strong></td><td>Joint Application Development — facilitated group sessions with stakeholders and developers</td><td>Resolving conflicts; rapid requirements gathering with diverse groups</td></tr>
+        <tr><td><strong>Brainstorming</strong></td><td>Unconstrained group idea generation — no criticism during idea generation phase</td><td>Creative exploration; generating innovative feature ideas</td></tr>
+        <tr><td><strong>Prototyping</strong></td><td>Build a working mock-up; stakeholders interact with it and provide feedback</td><td>When requirements are unclear or users have difficulty articulating needs</td></tr>
+        <tr><td><strong>Document Analysis</strong></td><td>Examine existing documents, manuals, procedures, reports, and legacy system documentation</td><td>Replacement systems; regulatory compliance requirements</td></tr>
+        <tr><td><strong>Use Cases / User Stories</strong></td><td>Scenario-based descriptions of system interactions from the user's perspective</td><td>Agile projects; understanding user goals and workflows</td></tr>
+        <tr><td><strong>Storyboarding</strong></td><td>Visual sequence of sketches showing user interactions with the system</td><td>UI-heavy applications; communicating with non-technical stakeholders</td></tr>
+        <tr><td><strong>Focus Groups</strong></td><td>Moderated group discussion with representative users</td><td>Market research; product feature prioritisation</td></tr>
+      </table>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Elicitation Problems</div>
+        <ul>
+          <li><strong>Stakeholders don't know what they want</strong> — Tacit knowledge; they know it when they see it</li>
+          <li><strong>Stakeholders express requirements in their own terms</strong> — Domain knowledge gap between users and engineers</li>
+          <li><strong>Different stakeholders may have conflicting requirements</strong> — Negotiation required</li>
+          <li><strong>Organisational and political factors</strong> — Requirements may reflect politics, not real needs</li>
+          <li><strong>Requirements change</strong> — Business environment changes; stakeholder understanding evolves</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">4.5 Requirements Validation</div>
+      <p>Validation checks that the requirements define the system the customer actually wants. Distinct from verification (which checks that the system conforms to its specification).</p>
+      <div class="info-box">
+        <div class="info-label">Validation vs Verification</div>
+        <strong>Validation:</strong> "Are we building the right product?" (Does the specification match stakeholder needs?)<br>
+        <strong>Verification:</strong> "Are we building the product right?" (Does the system conform to its specification?)
+      </div>
+      <table>
+        <tr><th>Validation Check</th><th>What It Tests</th></tr>
+        <tr><td><strong>Validity</strong></td><td>Does the system provide functions that best support stakeholder needs?</td></tr>
+        <tr><td><strong>Consistency</strong></td><td>Are there any requirements conflicts?</td></tr>
+        <tr><td><strong>Completeness</strong></td><td>Are all functions required by the customer included?</td></tr>
+        <tr><td><strong>Realism</strong></td><td>Can the requirements be implemented given the available budget and technology?</td></tr>
+        <tr><td><strong>Verifiability</strong></td><td>Can each requirement be checked?</td></tr>
+        <tr><td><strong>Comprehensibility</strong></td><td>Is the specification properly understood?</td></tr>
+        <tr><td><strong>Traceability</strong></td><td>Is the origin of each requirement clearly stated?</td></tr>
+        <tr><td><strong>Adaptability</strong></td><td>Can a requirement be changed without large-scale impact?</td></tr>
+      </table>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">4.6 Requirements Negotiation</div>
+      <p>When multiple stakeholders have conflicting requirements, the SE team must negotiate. Effective negotiation:</p>
+      <ul>
+        <li>Identifies stakeholders and their relative authority/priority</li>
+        <li>Discovers hidden assumptions behind stated requirements</li>
+        <li>Uses formal prioritisation techniques (MoSCoW: Must-have, Should-have, Could-have, Won't-have)</li>
+        <li>Seeks compromise — often through phased delivery or scope reduction</li>
+        <li>Documents agreed requirements with stakeholder sign-off</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 5: REQUIREMENTS MODELING -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch5">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 5</span></div>
+    <div>
+      <h2>Requirements Modeling</h2>
+      <div class="ch-subtitle">Use cases · Class diagrams · Sequence diagrams · Activity diagrams · State diagrams · Data modeling · CRC cards</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">5.1 Analysis Models Overview</div>
+      <div class="def-box">
+        <div class="def-label">Definition</div>
+        Requirements models (analysis models) provide a representation of information, function, and behaviour of software. They bridge the gap between imprecise informal requirements and precise design. They are created during <strong>elaboration</strong> in the RE process.
+      </div>
+      <p>Requirements modeling uses four model types:</p>
+      <table>
+        <tr><th>Model Type</th><th>Notation</th><th>Purpose</th></tr>
+        <tr><td><strong>Scenario-based</strong></td><td>Use cases, user stories</td><td>How users interact with the system</td></tr>
+        <tr><td><strong>Class-based</strong></td><td>Class diagrams, CRC cards</td><td>Objects, attributes, relationships</td></tr>
+        <tr><td><strong>Behavioural</strong></td><td>State diagrams, sequence diagrams</td><td>How the system responds to events</td></tr>
+        <tr><td><strong>Flow-oriented</strong></td><td>DFDs, activity diagrams</td><td>How data transforms through the system</td></tr>
+      </table>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">5.2 Scenario-Based Modeling — Use Cases</div>
+      <p>A <strong>use case</strong> describes a sequence of actions that provides a measurable value to an actor. It represents the system's functional behaviour from the user's perspective.</p>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Use Case Components</div>
+        <table>
+          <tr><th>Element</th><th>Description</th></tr>
+          <tr><td><strong>Actor</strong></td><td>A role played by a person or system that interacts with the subject. Drawn as a stick figure.</td></tr>
+          <tr><td><strong>Use Case</strong></td><td>A description of a set of sequences of actions performed by the system. Drawn as an ellipse.</td></tr>
+          <tr><td><strong>Association</strong></td><td>A line between actor and use case showing participation</td></tr>
+          <tr><td><strong>&lt;&lt;include&gt;&gt;</strong></td><td>One use case always includes the behaviour of another</td></tr>
+          <tr><td><strong>&lt;&lt;extend&gt;&gt;</strong></td><td>One use case optionally extends the behaviour of another under certain conditions</td></tr>
+          <tr><td><strong>Generalisation</strong></td><td>A use case inherits behaviour from a parent use case</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Use Case Template (Cockburn Format)</div>
+        <div class="info-box">
+          <div class="info-label">Use Case Template Elements</div>
+          <strong>Use Case Name</strong> | <strong>ID</strong> | <strong>Actor(s)</strong> | <strong>Preconditions</strong> | <strong>Main Success Scenario (Basic Flow)</strong> | <strong>Extensions (Alternative Flows)</strong> | <strong>Postconditions</strong> | <strong>Priority</strong>
+        </div>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-title">Use Case Diagram — Online Banking System (Example)</div>
+        <svg width="520" height="240" viewBox="0 0 520 240">
+          <!-- System boundary -->
+          <rect x="120" y="10" width="300" height="220" rx="8" fill="none" stroke="#44403c" stroke-width="1.5" stroke-dasharray="6 3"/>
+          <text x="270" y="28" text-anchor="middle" font-family="DM Mono" font-size="11" fill="#44403c">Online Banking System</text>
+          <!-- Actors -->
+          <!-- Customer -->
+          <circle cx="55" cy="80" r="12" fill="none" stroke="#1e40af" stroke-width="1.5"/>
+          <line x1="55" y1="92" x2="55" y2="130" stroke="#1e40af" stroke-width="1.5"/>
+          <line x1="30" y1="108" x2="80" y2="108" stroke="#1e40af" stroke-width="1.5"/>
+          <line x1="55" y1="130" x2="35" y2="155" stroke="#1e40af" stroke-width="1.5"/>
+          <line x1="55" y1="130" x2="75" y2="155" stroke="#1e40af" stroke-width="1.5"/>
+          <text x="55" y="172" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#1e3a8a">Customer</text>
+          <!-- Bank Staff -->
+          <circle cx="465" cy="80" r="12" fill="none" stroke="#166534" stroke-width="1.5"/>
+          <line x1="465" y1="92" x2="465" y2="130" stroke="#166534" stroke-width="1.5"/>
+          <line x1="440" y1="108" x2="490" y2="108" stroke="#166534" stroke-width="1.5"/>
+          <line x1="465" y1="130" x2="445" y2="155" stroke="#166534" stroke-width="1.5"/>
+          <line x1="465" y1="130" x2="485" y2="155" stroke="#166534" stroke-width="1.5"/>
+          <text x="465" y="172" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#14532d">Bank Staff</text>
+          <!-- Use cases -->
+          <ellipse cx="270" cy="60"  rx="65" ry="20" fill="#dbeafe" stroke="#1e40af" stroke-width="1"/>
+          <text x="270" y="64" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#1e3a8a">Login</text>
+          <ellipse cx="210" cy="110" rx="65" ry="20" fill="#fef3c7" stroke="#b45309" stroke-width="1"/>
+          <text x="210" y="114" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#92400e">View Balance</text>
+          <ellipse cx="330" cy="110" rx="65" ry="20" fill="#fef3c7" stroke="#b45309" stroke-width="1"/>
+          <text x="330" y="114" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#92400e">Transfer Funds</text>
+          <ellipse cx="270" cy="175" rx="65" ry="20" fill="#dcfce7" stroke="#166534" stroke-width="1"/>
+          <text x="270" y="179" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#14532d">Generate Report</text>
+          <!-- Associations -->
+          <line x1="67" y1="92" x2="205" y2="60" stroke="#44403c" stroke-width="1"/>
+          <line x1="67" y1="105" x2="144" y2="110" stroke="#44403c" stroke-width="1"/>
+          <line x1="67" y1="110" x2="264" y2="110" stroke="#44403c" stroke-width="1"/>
+          <line x1="453" y1="92" x2="335" y2="60" stroke="#44403c" stroke-width="1"/>
+          <line x1="453" y1="110" x2="396" y2="110" stroke="#44403c" stroke-width="1"/>
+          <line x1="453" y1="118" x2="335" y2="175" stroke="#44403c" stroke-width="1"/>
+          <!-- include -->
+          <line x1="270" y1="80" x2="210" y2="90" stroke="#6b21a8" stroke-width="1" stroke-dasharray="4 2"/>
+          <text x="225" y="82" font-family="DM Mono" font-size="8" fill="#6b21a8">«include»</text>
+          <line x1="270" y1="80" x2="330" y2="90" stroke="#6b21a8" stroke-width="1" stroke-dasharray="4 2"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">5.3 Class-Based Modeling</div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">UML Class Diagram</div>
+        <p>A class diagram shows the static structure of a system — the classes (objects), their attributes, operations, and the relationships between them.</p>
+        <table>
+          <tr><th>Relationship</th><th>Symbol</th><th>Meaning</th></tr>
+          <tr><td><strong>Association</strong></td><td>Solid line</td><td>General relationship: "uses", "has a connection to"</td></tr>
+          <tr><td><strong>Aggregation</strong></td><td>Hollow diamond → whole</td><td>Whole-part relationship; part can exist without whole</td></tr>
+          <tr><td><strong>Composition</strong></td><td>Filled diamond → whole</td><td>Strong whole-part; part cannot exist without whole</td></tr>
+          <tr><td><strong>Generalisation (Inheritance)</strong></td><td>Open arrowhead → parent</td><td>Subclass inherits from superclass</td></tr>
+          <tr><td><strong>Dependency</strong></td><td>Dashed arrow</td><td>One class uses or depends on another</td></tr>
+          <tr><td><strong>Realisation</strong></td><td>Dashed open arrowhead</td><td>Class implements an interface</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">CRC Cards (Class-Responsibility-Collaborator)</div>
+        <p>CRC cards are index cards used in OO analysis. Each card represents one class:</p>
+        <div class="cmp-grid">
+          <div class="cmp-card">
+            <div class="cmp-card-head">Class Name: Order</div>
+            <div class="cmp-card-body" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div><strong>Responsibilities</strong><br><small>• Maintain order details<br>• Calculate total amount<br>• Track order status</small></div>
+              <div><strong>Collaborators</strong><br><small>• Customer<br>• Product<br>• Payment</small></div>
+            </div>
+          </div>
+          <div class="cmp-card">
+            <div class="cmp-card-head">Usage</div>
+            <div class="cmp-card-body">
+              <ul>
+                <li>Used in early OO analysis</li>
+                <li>Physical cards encourage discussion</li>
+                <li>Easy to rearrange and modify</li>
+                <li>Identifies key classes and relationships before formal modeling</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">5.4 Behavioural Modeling</div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">State Diagram (State Machine)</div>
+        <p>Shows the dynamic behaviour of an object through its states and transitions. Useful for event-driven systems, UI behaviour, and protocol design.</p>
+        <ul>
+          <li><strong>State:</strong> A condition or situation during the life of an object (rectangle with rounded corners)</li>
+          <li><strong>Transition:</strong> A change from one state to another, triggered by an event (arrow with label)</li>
+          <li><strong>Initial state:</strong> Filled black circle</li>
+          <li><strong>Final state:</strong> Filled circle inside a larger circle</li>
+          <li><strong>Guard:</strong> A boolean condition that must be true for a transition to occur [in square brackets]</li>
+          <li><strong>Action:</strong> Activity that occurs during a transition or in a state</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Sequence Diagram</div>
+        <p>Shows how objects interact in time — the sequence of messages exchanged between objects to carry out a use case.</p>
+        <table>
+          <tr><th>Element</th><th>Notation</th><th>Meaning</th></tr>
+          <tr><td>Object/Actor</td><td>Rectangle at top with name</td><td>Participant in the interaction</td></tr>
+          <tr><td>Lifeline</td><td>Dashed vertical line below object</td><td>Object's existence over time</td></tr>
+          <tr><td>Activation bar</td><td>Narrow rectangle on lifeline</td><td>Period when object is executing</td></tr>
+          <tr><td>Synchronous message</td><td>Solid arrow → (filled head)</td><td>Caller waits for return</td></tr>
+          <tr><td>Asynchronous message</td><td>Solid arrow → (open head)</td><td>Caller does not wait</td></tr>
+          <tr><td>Return message</td><td>Dashed arrow ←</td><td>Return value/control from called operation</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Activity Diagram</div>
+        <p>Shows the flow of control within a process — similar to a flowchart but supports parallel activities (fork/join bars). Useful for modelling workflows, algorithms, and use case steps.</p>
+        <ul>
+          <li><strong>Action:</strong> Rounded rectangle — a single step in the activity</li>
+          <li><strong>Decision node:</strong> Diamond — branching based on a condition</li>
+          <li><strong>Fork/Join:</strong> Thick horizontal bar — parallel execution (fork splits; join synchronises)</li>
+          <li><strong>Swimlanes:</strong> Partition the diagram by actor/responsibility</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">5.5 Data Modeling (Flow-Oriented)</div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Data Flow Diagram (DFD)</div>
+        <p>A DFD shows the flow of data through a system, the processes that transform data, and the data stores. It is a <strong>functional decomposition</strong> tool.</p>
+        <table>
+          <tr><th>Symbol</th><th>Element</th><th>Description</th></tr>
+          <tr><td>Circle / bubble</td><td><strong>Process</strong></td><td>Transforms input data into output data</td></tr>
+          <tr><td>Arrow</td><td><strong>Data Flow</strong></td><td>Data moving between elements; labelled with data name</td></tr>
+          <tr><td>Rectangle</td><td><strong>External Entity</strong></td><td>Source or sink of data outside the system</td></tr>
+          <tr><td>Open-ended rectangle</td><td><strong>Data Store</strong></td><td>Repository where data is stored (database, file)</td></tr>
+        </table>
+        <div class="info-box">
+          <div class="info-label">DFD Levelling</div>
+          <strong>Level 0 (Context Diagram):</strong> Single process representing entire system with all external entities<br>
+          <strong>Level 1:</strong> Major processes and data flows; decomposition of Level 0<br>
+          <strong>Level n:</strong> Each process further decomposed until primitive (non-decomposable) processes are reached
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Data Dictionary</div>
+        <p>A data dictionary is a structured repository that defines all data elements used in DFDs — their names, aliases, composition, values, and meanings. It ensures consistent terminology across the team and documentation.</p>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Entity-Relationship Diagram (ERD)</div>
+        <p>An ERD models the data perspective of a system — the entities (things/objects), attributes (properties), and relationships between entities.</p>
+        <ul>
+          <li><strong>Entity:</strong> A person, place, thing, or event about which data is stored (rectangle)</li>
+          <li><strong>Attribute:</strong> Property of an entity (ellipse)</li>
+          <li><strong>Relationship:</strong> Association between entities (diamond)</li>
+          <li><strong>Cardinality:</strong> 1:1, 1:N, M:N — how many entity instances participate</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 6: REQUIREMENTS ENGINEERING TASKS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch6">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 6</span></div>
+    <div>
+      <h2>Requirements Engineering Tasks</h2>
+      <div class="ch-subtitle">SRS · IEEE 830 · Non-functional requirements · Requirements traceability · Change management</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">6.1 Software Requirements Specification (SRS)</div>
+      <div class="def-box">
+        <div class="def-label">Definition (IEEE 830)</div>
+        An SRS is a description of the software system to be developed. It lays out functional and non-functional requirements, and may include a set of use cases that describe user interactions that the software must provide.
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">IEEE 830 SRS Structure</div>
+        <ol>
+          <li><strong>Introduction:</strong> Purpose, scope, definitions/acronyms, references, overview</li>
+          <li><strong>Overall Description:</strong> Product perspective, product functions, user characteristics, constraints, assumptions &amp; dependencies</li>
+          <li><strong>Specific Requirements:</strong>
+            <ul>
+              <li>Functional requirements (each function described in detail)</li>
+              <li>External interface requirements (UI, hardware, software, communications)</li>
+              <li>Non-functional requirements (performance, security, reliability, etc.)</li>
+              <li>Design constraints</li>
+              <li>Other requirements</li>
+            </ul>
+          </li>
+          <li><strong>Appendices:</strong> Glossary, analysis models, issues list</li>
+        </ol>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Characteristics of a Good SRS (IEEE 830)</div>
+        <table>
+          <tr><th>Characteristic</th><th>Description</th></tr>
+          <tr><td><strong>Correct</strong></td><td>Every stated requirement is one that the software shall possess</td></tr>
+          <tr><td><strong>Unambiguous</strong></td><td>Every requirement has one and only one interpretation</td></tr>
+          <tr><td><strong>Complete</strong></td><td>All significant requirements are included; all possible responses defined</td></tr>
+          <tr><td><strong>Consistent</strong></td><td>No subset of requirements conflict with each other</td></tr>
+          <tr><td><strong>Ranked for importance</strong></td><td>Each requirement is identified as essential, conditional, or optional</td></tr>
+          <tr><td><strong>Verifiable</strong></td><td>There exists a finite cost-effective process by which it can be checked</td></tr>
+          <tr><td><strong>Modifiable</strong></td><td>Structure allows changes easily, completely, and consistently</td></tr>
+          <tr><td><strong>Traceable</strong></td><td>Origin of each requirement is clear; each requirement can be referenced in future documentation</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">6.2 Non-Functional Requirements (NFR) in Depth</div>
+      <p>NFRs define system qualities and constraints — they constrain HOW the system provides its functional requirements.</p>
+      <table>
+        <tr><th>NFR Category</th><th>Description</th><th>Example Metric</th></tr>
+        <tr><td><strong>Performance</strong></td><td>Response time, throughput, capacity</td><td>"95th percentile response &lt;2s under 1000 users"</td></tr>
+        <tr><td><strong>Reliability</strong></td><td>Availability, MTBF, MTTR, fault tolerance</td><td>"99.9% uptime; MTTR &lt;30 min"</td></tr>
+        <tr><td><strong>Security</strong></td><td>Authentication, authorisation, confidentiality, integrity</td><td>"AES-256 encryption; OAuth 2.0 auth"</td></tr>
+        <tr><td><strong>Usability</strong></td><td>Learnability, efficiency, memorability, error recovery</td><td>"Task completion in &lt;3 min for new user"</td></tr>
+        <tr><td><strong>Maintainability</strong></td><td>Ease of change, modularity, testability</td><td>"McCabe complexity &lt;10 per function"</td></tr>
+        <tr><td><strong>Portability</strong></td><td>Adaptability, installability, replaceability</td><td>"Runs on Windows, macOS, Linux without recompile"</td></tr>
+        <tr><td><strong>Scalability</strong></td><td>Capacity to grow with demand</td><td>"Scale to 100,000 concurrent users with horizontal scaling"</td></tr>
+        <tr><td><strong>Safety</strong></td><td>Freedom from unacceptable risk of harm</td><td>"System shall default to fail-safe state on hardware fault"</td></tr>
+      </table>
+      <div class="info-box">
+        <div class="info-label">ISO/IEC 25010 Quality Model</div>
+        International standard for software product quality. Defines 8 quality characteristics: <strong>Functional Suitability, Performance Efficiency, Compatibility, Usability, Reliability, Security, Maintainability, Portability</strong>. Each has 2–5 sub-characteristics.
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">6.3 Requirements Traceability</div>
+      <p>Traceability establishes relationships between requirements and other system elements. It enables impact analysis and verification.</p>
+
+      <div class="cmp-grid">
+        <div class="cmp-card">
+          <div class="cmp-card-head">Forward Traceability</div>
+          <div class="cmp-card-body">
+            Requirement → Design → Code → Test<br><br>
+            Ensures every requirement is implemented and tested.
+          </div>
+        </div>
+        <div class="cmp-card">
+          <div class="cmp-card-head">Backward Traceability</div>
+          <div class="cmp-card-body">
+            Code/Test → Design → Requirement<br><br>
+            Ensures every design decision and code element is justified by a requirement. Prevents gold-plating.
+          </div>
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Requirements Traceability Matrix (RTM)</div>
+        <table>
+          <tr><th>Req. ID</th><th>Description</th><th>Design Element</th><th>Code Module</th><th>Test Case</th></tr>
+          <tr><td>FR-001</td><td>User login</td><td>AuthController</td><td>auth.py</td><td>TC-001, TC-002</td></tr>
+          <tr><td>FR-002</td><td>Place order</td><td>OrderService</td><td>order.py</td><td>TC-010–TC-015</td></tr>
+          <tr><td>NFR-001</td><td>Response &lt;2s</td><td>Cache layer</td><td>cache.py</td><td>PERF-001</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">6.4 Requirements Change Management</div>
+      <p>Requirements change for many reasons: stakeholder understanding evolves, business priorities shift, technology changes, regulatory updates. A change management process prevents uncontrolled change (scope creep).</p>
+      <div class="steps">
+        <li><strong>Change request submitted</strong> — Any stakeholder can submit a change request using a formal form</li>
+        <li><strong>Impact analysis</strong> — SE team analyses impact on cost, schedule, other requirements, architecture</li>
+        <li><strong>Change Review Board (CRB)</strong> — Stakeholders and SE lead decide: approve, reject, or defer</li>
+        <li><strong>SRS updated</strong> — If approved, SRS is formally revised with version control</li>
+        <li><strong>Downstream artifacts updated</strong> — Design, code, tests updated via RTM</li>
+        <li><strong>Stakeholders notified</strong> — All affected parties informed of the approved change</li>
+      </div>
+      <div class="warn-box">
+        <div class="warn-label">Scope Creep</div>
+        Uncontrolled changes or continuous growth in project scope — the most common cause of project overruns. Prevented by formal change management, version control, and stakeholder agreement on baselines.
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- PART 3: Chapters 9, 10, 11, 12 — Design chapters -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 9: DESIGN CONCEPTS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch9">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 9</span></div>
+    <div>
+      <h2>Design Concepts</h2>
+      <div class="ch-subtitle">Abstraction · Architecture · Patterns · Separation of concerns · Modularity · Information hiding · Functional independence · Cohesion · Coupling · Refactoring</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">9.1 The Design Process</div>
+      <div class="def-box">
+        <div class="def-label">Software Design</div>
+        Software design is the process of defining the architecture, components, interfaces, and other characteristics of a system or component. It translates requirements into a blueprint for constructing software.
+      </div>
+      <p>Design occurs at two levels: <strong>Architectural design</strong> (high-level structure of software) and <strong>Component-level design</strong> (detailed algorithms and data structures for each module).</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-title">Design as a Translation Process</div>
+        <svg width="540" height="80" viewBox="0 0 540 80">
+          <defs>
+            <marker id="d9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#44403c" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <rect x="10"  y="18" width="130" height="44" rx="5" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+          <rect x="170" y="18" width="130" height="44" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+          <rect x="330" y="18" width="130" height="44" rx="5" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+          <text x="75"  y="36" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#1e3a8a" font-weight="500">Requirements</text>
+          <text x="75"  y="50" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">SRS / Analysis model</text>
+          <text x="235" y="36" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#92400e" font-weight="500">DESIGN</text>
+          <text x="235" y="50" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Architecture + components</text>
+          <text x="395" y="36" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#14532d" font-weight="500">Implementation</text>
+          <text x="395" y="50" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Code + unit tests</text>
+          <line x1="140" y1="40" x2="168" y2="40" stroke="#44403c" stroke-width="1.5" marker-end="url(#d9)"/>
+          <line x1="300" y1="40" x2="328" y2="40" stroke="#44403c" stroke-width="1.5" marker-end="url(#d9)"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">9.2 Fundamental Design Concepts</div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Abstraction</div>
+        <p>Abstraction allows us to focus on essential characteristics while ignoring irrelevant details. Two forms:</p>
+        <ul>
+          <li><strong>Procedural abstraction:</strong> A sequence of instructions with a specific and limited function (e.g., a function that opens a file)</li>
+          <li><strong>Data abstraction:</strong> A collection of data that describes a data object (e.g., a "Document" object with attributes title, content, author)</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Architecture</div>
+        <p>Software architecture is the <strong>overall structure of the software</strong> — the organisation of software components (modules), their properties, and the relationships between them. It is the first design decision and the hardest to change.</p>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Patterns</div>
+        <p>A design pattern is a <strong>recurring solution to a standard problem</strong> in a given context. Patterns capture expert design knowledge and make it reusable.</p>
+        <ul>
+          <li><strong>Architectural patterns:</strong> MVC, Layered, Microservices, Event-Driven</li>
+          <li><strong>Design patterns (GoF — Gang of Four):</strong> Creational (Singleton, Factory), Structural (Adapter, Decorator, Façade), Behavioural (Observer, Strategy, Command)</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Separation of Concerns</div>
+        <p>A software design principle: any complex problem can be more easily handled if decomposed into pieces that can be solved independently. Examples:</p>
+        <ul>
+          <li>Separating UI from business logic from data access (MVC/3-tier)</li>
+          <li>Separating error handling from normal flow (aspect-oriented programming)</li>
+          <li>Separating configuration from code</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Modularity</div>
+        <p>Software is divided into separately named and addressable components (<strong>modules</strong>) that are integrated to satisfy requirements. Modularity:</p>
+        <ul>
+          <li>Reduces complexity (divide and conquer)</li>
+          <li>Allows parallel development</li>
+          <li>Facilitates testing and maintenance</li>
+          <li>Supports reuse</li>
+        </ul>
+        <div class="info-box">
+          <div class="info-label">Modularity Cost Trade-off</div>
+          As number of modules increases, effort per module decreases (divide and conquer advantage) BUT the effort to integrate modules increases. There is an optimal module count that minimises total effort.
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Information Hiding (Encapsulation)</div>
+        <p>Each module knows only what it needs to know. Implementation details are <strong>hidden</strong> behind interfaces. Proposed by David Parnas (1972). Reduces the impact of change — a change inside a module does not propagate to other modules that use it.</p>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Stepwise Refinement (Wirth)</div>
+        <p>Top-down design strategy. Start with a high-level statement and <strong>elaborate it step by step</strong> into lower-level detail. Complementary to abstraction — abstraction goes upward; refinement goes downward.</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">9.3 Functional Independence — Cohesion and Coupling</div>
+      <p>Functional independence is the single most important design concept. A module achieves functional independence when it performs a <strong>single function</strong> and has <strong>little interaction</strong> with other modules.</p>
+      <p>Measured by two criteria: <strong>cohesion</strong> and <strong>coupling</strong>.</p>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Cohesion (Higher is Better)</div>
+        <p>Cohesion measures how closely related the functions within a single module are. A highly cohesive module does one thing well.</p>
+        <table>
+          <tr><th>Type</th><th>Description</th><th>Quality</th></tr>
+          <tr><td><strong>Functional</strong></td><td>Module performs a single, well-defined function (e.g., calculateSquareRoot())</td><td><span class="badge badge-green">Best</span></td></tr>
+          <tr><td><strong>Sequential</strong></td><td>Output of one function is input to the next</td><td><span class="badge badge-green">Good</span></td></tr>
+          <tr><td><strong>Communicational</strong></td><td>Functions access or operate on the same data</td><td><span class="badge badge-amber">Acceptable</span></td></tr>
+          <tr><td><strong>Procedural</strong></td><td>Functions are related by sequence of control flow</td><td><span class="badge badge-amber">Moderate</span></td></tr>
+          <tr><td><strong>Temporal</strong></td><td>Functions related by timing (initialisation module)</td><td><span class="badge badge-amber">Weak</span></td></tr>
+          <tr><td><strong>Logical</strong></td><td>Functions logically related but not functionally (e.g., all I/O in one module)</td><td><span class="badge badge-red">Poor</span></td></tr>
+          <tr><td><strong>Coincidental</strong></td><td>Functions have no meaningful relationship</td><td><span class="badge badge-red">Worst</span></td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Coupling (Lower is Better)</div>
+        <p>Coupling measures the degree of interdependence between modules. Low coupling means a change in one module has minimal impact on others.</p>
+        <table>
+          <tr><th>Type</th><th>Description</th><th>Quality</th></tr>
+          <tr><td><strong>Data coupling</strong></td><td>Modules share data through parameters only (simple data items)</td><td><span class="badge badge-green">Best</span></td></tr>
+          <tr><td><strong>Stamp coupling</strong></td><td>Modules share a composite data structure; only part of it is used</td><td><span class="badge badge-green">Good</span></td></tr>
+          <tr><td><strong>Control coupling</strong></td><td>One module passes a control flag that directs logic in another</td><td><span class="badge badge-amber">Moderate</span></td></tr>
+          <tr><td><strong>External coupling</strong></td><td>Modules share an externally imposed format or interface</td><td><span class="badge badge-amber">Moderate</span></td></tr>
+          <tr><td><strong>Common coupling</strong></td><td>Modules share global data</td><td><span class="badge badge-red">Poor</span></td></tr>
+          <tr><td><strong>Content coupling</strong></td><td>One module modifies data inside another module</td><td><span class="badge badge-red">Worst</span></td></tr>
+        </table>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-title">Design Goal: High Cohesion + Low Coupling</div>
+        <svg width="500" height="120" viewBox="0 0 500 120">
+          <!-- Low cohesion, high coupling (BAD) -->
+          <rect x="20" y="20" width="100" height="40" rx="4" fill="#fee2e2" stroke="#991b1b" stroke-width="1.5"/>
+          <rect x="20" y="70" width="100" height="40" rx="4" fill="#fee2e2" stroke="#991b1b" stroke-width="1.5"/>
+          <text x="70" y="44" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#7f1d1d">Module A</text>
+          <text x="70" y="94" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#7f1d1d">Module B</text>
+          <!-- Multiple coupling lines -->
+          <line x1="120" y1="30" x2="120" y2="80" stroke="#991b1b" stroke-width="1"/>
+          <line x1="120" y1="40" x2="120" y2="85" stroke="#991b1b" stroke-width="1"/>
+          <line x1="120" y1="50" x2="120" y2="90" stroke="#991b1b" stroke-width="1"/>
+          <text x="70" y="14" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#991b1b">BAD: High Coupling</text>
+          <!-- Arrow -->
+          <text x="200" y="65" text-anchor="middle" font-family="DM Mono" font-size="20" fill="#44403c">→</text>
+          <!-- High cohesion, low coupling (GOOD) -->
+          <rect x="250" y="20" width="100" height="40" rx="4" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+          <rect x="380" y="20" width="100" height="40" rx="4" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+          <rect x="250" y="70" width="100" height="40" rx="4" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+          <text x="300" y="44" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#14532d">Auth Module</text>
+          <text x="430" y="44" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#14532d">Order Module</text>
+          <text x="300" y="94" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#14532d">Payment Module</text>
+          <!-- Single thin line -->
+          <line x1="350" y1="40" x2="378" y2="40" stroke="#166534" stroke-width="1"/>
+          <line x1="300" y1="60" x2="300" y2="68" stroke="#166534" stroke-width="1"/>
+          <text x="315" y="14" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#166534">GOOD: Low Coupling</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">9.4 Design Model Elements</div>
+      <table>
+        <tr><th>Design Element</th><th>Purpose</th><th>Notation</th></tr>
+        <tr><td><strong>Data design</strong></td><td>Transforms information domain models into data structures (classes, databases)</td><td>Class diagrams, ERDs, schema</td></tr>
+        <tr><td><strong>Architectural design</strong></td><td>Defines overall structure — subsystems and their interactions</td><td>Component diagrams, deployment diagrams</td></tr>
+        <tr><td><strong>Interface design</strong></td><td>Describes how modules communicate with each other, user, and external systems</td><td>Interface specifications, wireframes</td></tr>
+        <tr><td><strong>Component design</strong></td><td>Describes internal processing logic of each component</td><td>Flowcharts, pseudocode, PDL (Program Design Language)</td></tr>
+      </table>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">9.5 Refactoring</div>
+      <div class="def-box">
+        <div class="def-label">Definition</div>
+        Refactoring is the process of changing a software system in such a way that it <strong>does not alter the external behaviour</strong> of the code yet <strong>improves its internal structure</strong>. It is a disciplined technique for cleaning up code.
+      </div>
+      <p>Common refactoring operations: Extract Method, Rename Variable, Remove Duplicate Code, Replace Magic Number with Named Constant, Extract Class, Move Method, Introduce Polymorphism.</p>
+      <p>Refactoring reduces <strong>technical debt</strong> — the cost of rework caused by choosing an easy solution now instead of a better approach that would take longer.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 10: ARCHITECTURAL DESIGN -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch10">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 10</span></div>
+    <div>
+      <h2>Architectural Design</h2>
+      <div class="ch-subtitle">Architectural styles · Layered · MVC · Client-server · Microservices · Pipe-and-filter · Component &amp; connector · Quality attributes</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">10.1 What is Software Architecture?</div>
+      <div class="def-box">
+        <div class="def-label">Definition (Bass, Clements, Kazman)</div>
+        The software architecture of a program or computing system is <strong>the structure or structures of the system</strong>, which comprise software elements, the externally visible properties of those elements, and the relationships among them.
+      </div>
+      <p>Architecture decisions are made <strong>early and are difficult to change</strong>. They have the greatest impact on quality attributes (performance, security, maintainability) of the final system.</p>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Why Architecture Matters</div>
+        <ul>
+          <li>Enables communication among stakeholders about system structure</li>
+          <li>Highlights early design decisions with widest impact</li>
+          <li>Constitutes a transferable, reusable model (architectural patterns)</li>
+          <li>Constrains implementation — sets boundaries within which modules must work</li>
+          <li>Enables analysis of quality attributes before a line of code is written</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">10.2 Architectural Styles (Patterns)</div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Layered Architecture</div>
+        <p>The system is organised into layers, each providing services to the layer above and consuming services from the layer below. Each layer has a well-defined responsibility.</p>
+        <div class="diagram-wrap">
+          <div class="diagram-title">Layered Architecture (4-Tier Web Application)</div>
+          <svg width="440" height="200" viewBox="0 0 440 200">
+            <rect x="40" y="14"  width="360" height="38" rx="5" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+            <rect x="40" y="58"  width="360" height="38" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+            <rect x="40" y="102" width="360" height="38" rx="5" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+            <rect x="40" y="146" width="360" height="38" rx="5" fill="#f3e8ff" stroke="#6b21a8" stroke-width="1.5"/>
+            <text x="220" y="29"  text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#1e3a8a">Presentation Layer</text>
+            <text x="220" y="43"  text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">UI components, Views, Controllers — React, Angular, HTML</text>
+            <text x="220" y="73"  text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#92400e">Business Logic Layer</text>
+            <text x="220" y="87"  text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Application logic, Rules, Workflows — Services, Use Cases</text>
+            <text x="220" y="117" text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#14532d">Data Access Layer</text>
+            <text x="220" y="131" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Repositories, DAOs, ORM — CRUD operations</text>
+            <text x="220" y="161" text-anchor="middle" font-family="Fraunces,serif" font-size="13" font-weight="700" fill="#4c1d95">Database Layer</text>
+            <text x="220" y="175" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">Relational DB, NoSQL, File system — PostgreSQL, MongoDB</text>
+          </svg>
+        </div>
+        <div class="cmp-grid">
+          <div class="cmp-card">
+            <div class="cmp-card-head">Advantages</div>
+            <div class="cmp-card-body">
+              <ul>
+                <li>Clear separation of concerns</li>
+                <li>Easy to understand and develop incrementally</li>
+                <li>Individual layers can be replaced</li>
+              </ul>
+            </div>
+          </div>
+          <div class="cmp-card">
+            <div class="cmp-card-head">Disadvantages</div>
+            <div class="cmp-card-body">
+              <ul>
+                <li>Performance overhead (crossing layers)</li>
+                <li>Difficult to keep layers clean when requirements evolve</li>
+                <li>Not ideal for high-performance systems</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">MVC — Model-View-Controller</div>
+        <div class="diagram-wrap">
+          <div class="diagram-title">MVC Architecture Pattern</div>
+          <svg width="480" height="180" viewBox="0 0 480 180">
+            <defs>
+              <marker id="mvc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#44403c" stroke-width="1.5" stroke-linecap="round"/>
+              </marker>
+            </defs>
+            <!-- Model -->
+            <rect x="170" y="100" width="140" height="60" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+            <text x="240" y="125" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="700" fill="#92400e">Model</text>
+            <text x="240" y="142" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Data + Business Logic</text>
+            <!-- View -->
+            <rect x="20" y="20" width="140" height="60" rx="6" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+            <text x="90" y="45" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="700" fill="#1e3a8a">View</text>
+            <text x="90" y="62" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Renders UI from model data</text>
+            <!-- Controller -->
+            <rect x="320" y="20" width="140" height="60" rx="6" fill="#dcfce7" stroke="#166534" stroke-width="2"/>
+            <text x="390" y="45" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="700" fill="#14532d">Controller</text>
+            <text x="390" y="62" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#44403c">Handles user input &amp; events</text>
+            <!-- User -->
+            <text x="240" y="18" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#44403c">User Interaction</text>
+            <!-- Arrows -->
+            <path d="M240 15 L90 18 L90 20" stroke="#1e40af" stroke-width="1" stroke-dasharray="3 2" fill="none" marker-end="url(#mvc)"/>
+            <path d="M240 15 L390 18 L390 20" stroke="#166534" stroke-width="1.5" fill="none" marker-end="url(#mvc)"/>
+            <path d="M390 80 L390 130 L312 130" stroke="#166534" stroke-width="1.5" fill="none" marker-end="url(#mvc)"/>
+            <text x="390" y="116" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#14532d">Updates</text>
+            <path d="M170 130 L90 130 L90 82" stroke="#b45309" stroke-width="1.5" fill="none" marker-end="url(#mvc)"/>
+            <text x="120" y="124" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#92400e">Notifies</text>
+          </svg>
+        </div>
+        <ul>
+          <li><strong>Model:</strong> Encapsulates data and business rules. Notifies View when data changes.</li>
+          <li><strong>View:</strong> Renders the model data for the user. Multiple views can display the same model.</li>
+          <li><strong>Controller:</strong> Handles user input; updates the model; selects the view to display.</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Client-Server Architecture</div>
+        <p>System is partitioned into clients (requestors of services) and servers (providers of services). Servers provide services to multiple clients. Communication typically over a network using request/response protocols.</p>
+        <ul>
+          <li><strong>2-tier:</strong> Client + Database server</li>
+          <li><strong>3-tier:</strong> Presentation + Application server + Database server</li>
+          <li><strong>N-tier:</strong> Multiple tiers for scalability and separation</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Pipe-and-Filter Architecture</div>
+        <p>Components (<strong>filters</strong>) process data streams; data flows between components through <strong>pipes</strong>. Each filter is independent and transforms its input. Suitable for data transformation pipelines.</p>
+        <div class="diagram-wrap">
+          <div class="diagram-title">Pipe-and-Filter Pattern</div>
+          <svg width="520" height="70" viewBox="0 0 520 70">
+            <defs>
+              <marker id="pf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round"/>
+              </marker>
+            </defs>
+            <!-- Source -->
+            <rect x="10"  y="18" width="70" height="34" rx="4" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+            <text x="45"  y="36" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#1e3a8a">Data Source</text>
+            <!-- Filters -->
+            <rect x="110" y="18" width="70" height="34" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+            <text x="145" y="32" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#92400e">Filter 1</text>
+            <text x="145" y="44" text-anchor="middle" font-family="DM Mono" font-size="8" fill="#44403c">Parse</text>
+            <rect x="220" y="18" width="70" height="34" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+            <text x="255" y="32" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#92400e">Filter 2</text>
+            <text x="255" y="44" text-anchor="middle" font-family="DM Mono" font-size="8" fill="#44403c">Transform</text>
+            <rect x="330" y="18" width="70" height="34" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+            <text x="365" y="32" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#92400e">Filter 3</text>
+            <text x="365" y="44" text-anchor="middle" font-family="DM Mono" font-size="8" fill="#44403c">Validate</text>
+            <!-- Sink -->
+            <rect x="440" y="18" width="70" height="34" rx="4" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+            <text x="475" y="36" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#14532d">Data Sink</text>
+            <!-- Pipes -->
+            <line x1="80"  y1="35" x2="108"  y2="35" stroke="#1e40af" stroke-width="2" marker-end="url(#pf)"/>
+            <line x1="180" y1="35" x2="218"  y2="35" stroke="#1e40af" stroke-width="2" marker-end="url(#pf)"/>
+            <line x1="290" y1="35" x2="328"  y2="35" stroke="#1e40af" stroke-width="2" marker-end="url(#pf)"/>
+            <line x1="400" y1="35" x2="438"  y2="35" stroke="#1e40af" stroke-width="2" marker-end="url(#pf)"/>
+            <!-- Pipe labels -->
+            <text x="94"  y="28" text-anchor="middle" font-family="DM Mono" font-size="8" fill="#78716c">pipe</text>
+            <text x="200" y="28" text-anchor="middle" font-family="DM Mono" font-size="8" fill="#78716c">pipe</text>
+            <text x="310" y="28" text-anchor="middle" font-family="DM Mono" font-size="8" fill="#78716c">pipe</text>
+            <text x="420" y="28" text-anchor="middle" font-family="DM Mono" font-size="8" fill="#78716c">pipe</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Repository (Data-Centred) Architecture</div>
+        <p>A central data store (repository/blackboard) is shared by all subsystems. Components access and modify data in the repository. Suitable for systems with complex data and many components that need shared access (IDEs, CAD systems, AI expert systems).</p>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Microservices Architecture</div>
+        <p>Application is composed of small, independently deployable services, each running in its own process and communicating through APIs (REST, gRPC, message brokers). Each service is responsible for a specific business capability.</p>
+        <table>
+          <tr><th>Principle</th><th>Description</th></tr>
+          <tr><td>Single Responsibility</td><td>Each service owns one business capability</td></tr>
+          <tr><td>Loose coupling</td><td>Services communicate via well-defined APIs; no shared database</td></tr>
+          <tr><td>Independent deployment</td><td>Each service can be deployed, scaled, and updated independently</td></tr>
+          <tr><td>Technology diversity</td><td>Each service can use its own language, framework, and database</td></tr>
+          <tr><td>Decentralised data</td><td>Each service manages its own data store</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Event-Driven Architecture</div>
+        <p>Components communicate by producing and consuming events through a message broker (Kafka, RabbitMQ). Producers publish events without knowing consumers. Enables loose coupling, scalability, and real-time processing.</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">10.3 Architecture and Quality Attributes</div>
+      <p>Different architectural styles support different quality attributes. The architect must select styles that meet the system's most critical quality requirements.</p>
+      <table>
+        <tr><th>Quality Attribute</th><th>Architectural Tactics / Styles</th></tr>
+        <tr><td><strong>Performance</strong></td><td>Caching, load balancing, async messaging, CDN, connection pooling</td></tr>
+        <tr><td><strong>Availability</strong></td><td>Redundancy, failover, circuit breakers, health monitoring, multi-AZ deployment</td></tr>
+        <tr><td><strong>Security</strong></td><td>API gateway (centralised auth), layered security, zero-trust, service mesh</td></tr>
+        <tr><td><strong>Modifiability</strong></td><td>Layered, microservices, high cohesion/low coupling</td></tr>
+        <tr><td><strong>Scalability</strong></td><td>Stateless services, horizontal scaling, event-driven, microservices</td></tr>
+        <tr><td><strong>Testability</strong></td><td>Separation of concerns, dependency injection, interfaces over implementations</td></tr>
+      </table>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">10.4 Architectural Documentation</div>
+      <p>Architecture is documented through multiple views (the 4+1 View Model — Krutchen):</p>
+      <table>
+        <tr><th>View</th><th>Purpose</th><th>UML Notation</th></tr>
+        <tr><td><strong>Logical view</strong></td><td>Functional structure — classes and packages</td><td>Class, package, sequence diagrams</td></tr>
+        <tr><td><strong>Development view</strong></td><td>Module structure for developers</td><td>Component, package diagrams</td></tr>
+        <tr><td><strong>Process view</strong></td><td>Runtime behaviour, concurrency, threads</td><td>Activity, sequence, collaboration diagrams</td></tr>
+        <tr><td><strong>Physical view</strong></td><td>Deployment — hardware nodes and software mappings</td><td>Deployment diagrams</td></tr>
+        <tr><td><strong>Scenarios (+1)</strong></td><td>Use cases that illustrate and validate the other views</td><td>Use case diagrams</td></tr>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 11: COMPONENT-LEVEL DESIGN -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch11">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 11</span></div>
+    <div>
+      <h2>Component-Level Design</h2>
+      <div class="ch-subtitle">Component definition · Principles · OO components · PDL · Cohesion/coupling refinement · Algorithms · Design patterns</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">11.1 What is a Component?</div>
+      <div class="def-box">
+        <div class="def-label">Definition</div>
+        A <strong>component</strong> is a modular, deployable, and replaceable part of a system that encapsulates implementation and exposes a set of interfaces. It is a building block of software that provides a cohesive set of behaviours.
+      </div>
+      <p>In OO terms, a component can be a class, a set of classes, or a subsystem. In component-based systems, it is a unit that can be independently deployed and composed.</p>
+      <table>
+        <tr><th>View</th><th>What a Component Is</th></tr>
+        <tr><td><strong>OO view</strong></td><td>A class or cluster of collaborating classes with well-defined interfaces</td></tr>
+        <tr><td><strong>Conventional view</strong></td><td>A functional element (module) of a program that processes data</td></tr>
+        <tr><td><strong>Process view</strong></td><td>A pipeline element that transforms data as it flows</td></tr>
+      </table>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">11.2 Design Principles for Components (SOLID)</div>
+      <table>
+        <tr><th>Principle</th><th>Statement</th><th>Consequence</th></tr>
+        <tr>
+          <td><strong>S — Single Responsibility (SRP)</strong></td>
+          <td>A class should have only one reason to change</td>
+          <td>High cohesion; each class has one job</td>
+        </tr>
+        <tr>
+          <td><strong>O — Open/Closed (OCP)</strong></td>
+          <td>Software entities should be open for extension but closed for modification</td>
+          <td>New features added via inheritance/composition, not by modifying existing code</td>
+        </tr>
+        <tr>
+          <td><strong>L — Liskov Substitution (LSP)</strong></td>
+          <td>Objects of a subclass should be substitutable for objects of the superclass</td>
+          <td>Inheritance hierarchies must be semantically correct — no surprising overrides</td>
+        </tr>
+        <tr>
+          <td><strong>I — Interface Segregation (ISP)</strong></td>
+          <td>Clients should not be forced to depend on methods they do not use</td>
+          <td>Prefer many small, specific interfaces over one large general-purpose interface</td>
+        </tr>
+        <tr>
+          <td><strong>D — Dependency Inversion (DIP)</strong></td>
+          <td>High-level modules should not depend on low-level modules. Both should depend on abstractions.</td>
+          <td>Depend on interfaces/abstractions, not concrete implementations — enables testing and flexibility</td>
+        </tr>
+      </table>
+      <div class="info-box">
+        <div class="info-label">Additional Package Principles (Robert Martin)</div>
+        <strong>REP</strong> (Reuse-Release Equivalence): Unit of reuse = unit of release<br>
+        <strong>CCP</strong> (Common Closure): Classes that change together belong together<br>
+        <strong>CRP</strong> (Common Reuse): Classes that are used together belong together<br>
+        <strong>ADP</strong> (Acyclic Dependencies): No cycles in the package dependency graph
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">11.3 Conducting Component-Level Design</div>
+      <p>Component-level design translates the architectural and requirements models into detailed design specifications for each component.</p>
+      <div class="steps">
+        <li><strong>Identify design classes</strong> corresponding to infrastructure domain</li>
+        <li><strong>Specify message detail</strong> for all classes that correspond to analysis classes</li>
+        <li><strong>Identify appropriate interfaces</strong> for each design class</li>
+        <li><strong>Elaborate attributes</strong> and define data types and structures</li>
+        <li><strong>Describe processing flow</strong> for each operation — use pseudocode/PDL or activity diagrams</li>
+        <li><strong>Describe persistent data sources</strong> (databases, files) and identify required classes to manage them</li>
+        <li><strong>Develop and simplify</strong> component-level design representation; apply design principles and refactor</li>
+        <li><strong>Review the design</strong> against requirements and architectural model</li>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">11.4 Program Design Language (PDL) / Pseudocode</div>
+      <p>PDL (Program Design Language) is a formal pseudocode used to describe component algorithms without a specific programming language syntax. It uses structured programming constructs:</p>
+      <div class="diagram-wrap">
+        <div class="diagram-title">PDL Construct Examples</div>
+        <svg width="500" height="220" viewBox="0 0 500 220">
+          <rect x="10" y="10" width="460" height="200" rx="6" fill="#1c1917" stroke="#44403c" stroke-width="1"/>
+          <text x="30" y="32" font-family="DM Mono" font-size="12" fill="#b45309">PROCEDURE</text>
+          <text x="150" y="32" font-family="DM Mono" font-size="12" fill="#a8a29e">calculateOrderTotal(orderItems)</text>
+          <text x="30" y="52" font-family="DM Mono" font-size="12" fill="#b45309">  IF</text>
+          <text x="72" y="52" font-family="DM Mono" font-size="12" fill="#a8a29e"> orderItems is empty THEN</text>
+          <text x="50" y="72" font-family="DM Mono" font-size="12" fill="#b45309">    RETURN</text>
+          <text x="130" y="72" font-family="DM Mono" font-size="12" fill="#a8a29e"> 0</text>
+          <text x="30" y="92" font-family="DM Mono" font-size="12" fill="#b45309">  ENDIF</text>
+          <text x="30" y="112" font-family="DM Mono" font-size="12" fill="#a8a29e">  total = 0</text>
+          <text x="30" y="132" font-family="DM Mono" font-size="12" fill="#b45309">  FOR EACH</text>
+          <text x="130" y="132" font-family="DM Mono" font-size="12" fill="#a8a29e"> item IN orderItems DO</text>
+          <text x="50" y="152" font-family="DM Mono" font-size="12" fill="#a8a29e">    total = total + (item.price × item.qty)</text>
+          <text x="30" y="172" font-family="DM Mono" font-size="12" fill="#b45309">  ENDFOR</text>
+          <text x="30" y="192" font-family="DM Mono" font-size="12" fill="#b45309">  RETURN</text>
+          <text x="110" y="192" font-family="DM Mono" font-size="12" fill="#a8a29e"> total</text>
+        </svg>
+      </div>
+      <p>PDL uses: <code>IF/THEN/ELSE/ENDIF</code>, <code>WHILE/DO/ENDWHILE</code>, <code>FOR EACH/DO/ENDFOR</code>, <code>PROCEDURE</code>, <code>RETURN</code>, <code>EXCEPTION HANDLING</code></p>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">11.5 GoF Design Patterns (Component-Level)</div>
+      <table>
+        <tr><th>Category</th><th>Pattern</th><th>Intent</th></tr>
+        <tr><td rowspan="3"><strong>Creational</strong></td><td>Singleton</td><td>Ensure a class has only one instance and provide global access to it</td></tr>
+        <tr><td>Factory Method</td><td>Define an interface for creating an object but let subclasses decide which class to instantiate</td></tr>
+        <tr><td>Abstract Factory</td><td>Create families of related objects without specifying their concrete classes</td></tr>
+        <tr><td rowspan="4"><strong>Structural</strong></td><td>Adapter</td><td>Convert interface of a class into another interface clients expect</td></tr>
+        <tr><td>Decorator</td><td>Attach additional responsibilities to an object dynamically</td></tr>
+        <tr><td>Façade</td><td>Provide a simplified interface to a complex subsystem</td></tr>
+        <tr><td>Composite</td><td>Compose objects into tree structures to represent part-whole hierarchies</td></tr>
+        <tr><td rowspan="4"><strong>Behavioural</strong></td><td>Observer</td><td>Define a one-to-many dependency — when one object changes state, all dependents are notified</td></tr>
+        <tr><td>Strategy</td><td>Define a family of algorithms, encapsulate each, and make them interchangeable</td></tr>
+        <tr><td>Command</td><td>Encapsulate a request as an object — allows undo, queuing, and logging of operations</td></tr>
+        <tr><td>Template Method</td><td>Define skeleton of an algorithm; let subclasses fill in specific steps</td></tr>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 12: USER INTERFACE DESIGN -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="ch12">
+  <div class="chapter-header">
+    <div><span class="ch-badge">Chapter 12</span></div>
+    <div>
+      <h2>User Interface Design</h2>
+      <div class="ch-subtitle">UI design principles · Golden rules · UX · Interaction types · Prototyping · Heuristic evaluation · Accessibility · Usability testing</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+
+    <div class="topic">
+      <div class="topic-title">12.1 The Importance of UI Design</div>
+      <div class="def-box">
+        <div class="def-label">Definition</div>
+        User Interface (UI) design focuses on the communication between human and computer. <strong>User Experience (UX)</strong> is broader — it encompasses all aspects of end-user interaction with a company, its services, and its products.
+      </div>
+      <p>A well-designed UI is the single most important factor in user satisfaction and adoption. Even technically excellent software fails if users cannot operate it effectively.</p>
+      <div class="info-box">
+        <div class="info-label">UI Design Principle (Pressman)</div>
+        The best interface is one where users never have to think about the interface — it is transparent and allows them to focus entirely on their task.
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">12.2 Three Golden Rules of UI Design (Shneiderman)</div>
+      <div class="key-points">
+        <div class="key-points-label">Shneiderman's Three Golden Rules</div>
+        <ul>
+          <li><strong>Place the user in control</strong> — The user should feel that they are in charge of the interface, not the other way around</li>
+          <li><strong>Reduce the user's memory load</strong> — The interface should not require users to remember information from one screen to another</li>
+          <li><strong>Make the interface consistent</strong> — Similar interactions should behave similarly across the entire system</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Expanding the Golden Rules — Shneiderman's 8 Golden Rules</div>
+        <table>
+          <tr><th>#</th><th>Rule</th><th>Description</th></tr>
+          <tr><td>1</td><td><strong>Strive for consistency</strong></td><td>Consistent sequences of actions, identical terminology, consistent commands across similar situations</td></tr>
+          <tr><td>2</td><td><strong>Enable frequent users to use shortcuts</strong></td><td>Abbreviations, function keys, hidden commands for expert users to speed up interaction</td></tr>
+          <tr><td>3</td><td><strong>Offer informative feedback</strong></td><td>System feedback for every user action — minor feedback for frequent/minor actions; major feedback for infrequent/major actions</td></tr>
+          <tr><td>4</td><td><strong>Design dialogs to yield closure</strong></td><td>Sequences of actions organised into groups with a beginning, middle, and end. Completion notification gives satisfaction.</td></tr>
+          <tr><td>5</td><td><strong>Offer error prevention and simple error handling</strong></td><td>Design so users cannot make serious errors. If error occurs: detect it and offer simple, understandable recovery</td></tr>
+          <tr><td>6</td><td><strong>Permit easy reversal of actions (Undo)</strong></td><td>Actions should be reversible where possible. Relieves anxiety and encourages exploration.</td></tr>
+          <tr><td>7</td><td><strong>Support internal locus of control</strong></td><td>Experienced users want to feel in control. Avoid surprises; respond to user actions, not vice versa</td></tr>
+          <tr><td>8</td><td><strong>Reduce short-term memory load</strong></td><td>Human short-term memory capacity is 7±2 items. Interfaces should not demand more.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">12.3 UI Design Process</div>
+      <div class="steps">
+        <li><strong>User, task, and environment analysis:</strong> Who are the users? What tasks do they perform? What is their technical expertise? What environment will they use the system in?</li>
+        <li><strong>Interface design:</strong> Define the interaction model (menu, form, direct manipulation); design metaphors; define interface objects and actions; design the screen layout and navigation structure</li>
+        <li><strong>Prototyping:</strong> Build low-fidelity (paper, wireframe) then high-fidelity prototypes to evaluate design choices before implementation</li>
+        <li><strong>Evaluation:</strong> Heuristic evaluation, usability testing, A/B testing. Assess the interface design against usability criteria.</li>
+        <li><strong>Refinement and iteration:</strong> Apply findings from evaluation to improve the design; repeat prototyping and evaluation</li>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">User Analysis</div>
+        <ul>
+          <li><strong>Novice users:</strong> Occasional, non-technical users — need guidance, affordances, visible options, error recovery</li>
+          <li><strong>Knowledgeable intermittent users:</strong> Reasonable technical knowledge but don't use the system every day — need reminders, clear terminology</li>
+          <li><strong>Expert frequent users:</strong> Experienced power users — need shortcuts, customisation, minimal friction</li>
+          <li><strong>Accessibility:</strong> Users with disabilities — visual, motor, cognitive, hearing impairments — must be considered (WCAG standards)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">12.4 Interaction Styles / Types</div>
+      <table>
+        <tr><th>Interaction Type</th><th>Description</th><th>Example</th><th>Best For</th></tr>
+        <tr><td><strong>Menu and navigation</strong></td><td>User selects from displayed options</td><td>Navigation bar, dropdown menus, hamburger menu</td><td>Reducing memory load; discoverability</td></tr>
+        <tr><td><strong>Form fill</strong></td><td>User enters data into fields</td><td>Registration form, checkout form</td><td>Structured data entry; business applications</td></tr>
+        <tr><td><strong>Direct manipulation</strong></td><td>User interacts with visual representations (drag, click, resize)</td><td>File explorer, drawing apps, touch gestures</td><td>Spatial tasks; users who are unfamiliar with commands</td></tr>
+        <tr><td><strong>Command language</strong></td><td>User types commands in a formal language</td><td>Terminal/CLI, SQL query, Git commands</td><td>Expert users; power and flexibility</td></tr>
+        <tr><td><strong>Natural language</strong></td><td>User interacts in spoken or written natural language</td><td>Siri, Alexa, ChatGPT</td><td>Voice interfaces; users who cannot type</td></tr>
+        <tr><td><strong>Q&amp;A / Dialogue</strong></td><td>System asks questions; user responds</td><td>Wizard setup assistants; chatbot flows</td><td>Guided walkthroughs; novice users</td></tr>
+      </table>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">12.5 Interface Design Elements</div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Fitts's Law</div>
+        <p>The time to acquire a target is a function of the <strong>distance to the target</strong> and the <strong>size of the target</strong>. Larger, closer targets are faster to hit.</p>
+        <div class="info-box">
+          <div class="info-label">Fitts's Law Formula</div>
+          <strong>T = a + b log₂(D/W + 1)</strong> where T = movement time, D = distance to target, W = width (size) of target. Practical implication: make buttons large and place frequently used actions close to the cursor's natural position.
+        </div>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Affordance and Signifiers</div>
+        <ul>
+          <li><strong>Affordance:</strong> The relationship between an object and an agent — what action the object allows (a button affords clicking)</li>
+          <li><strong>Signifier:</strong> A perceptible signal that communicates appropriate behaviour (a raised button <em>signals</em> it can be pressed)</li>
+          <li><strong>Mapping:</strong> Relationship between controls and their effects (steering wheel maps naturally to direction of travel)</li>
+          <li><strong>Feedback:</strong> Information about what has been done and what has happened (button changes colour when clicked)</li>
+          <li><strong>Conceptual model:</strong> User's mental model of how the system works</li>
+        </ul>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Visual Design Principles</div>
+        <table>
+          <tr><th>Principle</th><th>Application in UI</th></tr>
+          <tr><td><strong>Proximity</strong></td><td>Related elements should be grouped close together</td></tr>
+          <tr><td><strong>Alignment</strong></td><td>Elements should be aligned to create visual order and structure</td></tr>
+          <tr><td><strong>Repetition</strong></td><td>Repeat visual elements (colour, font, shape) to create consistency</td></tr>
+          <tr><td><strong>Contrast</strong></td><td>Make important elements stand out; ensure sufficient colour contrast for accessibility</td></tr>
+          <tr><td><strong>Hierarchy</strong></td><td>Size, weight, and colour should reflect the importance of elements</td></tr>
+          <tr><td><strong>White space</strong></td><td>Negative space reduces clutter and improves focus</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Navigation Design</div>
+        <ul>
+          <li><strong>The 3-click rule</strong> (guideline, not law): Users should reach any information within 3 clicks</li>
+          <li><strong>Breadcrumbs:</strong> Show users their current location in the hierarchy</li>
+          <li><strong>Consistent navigation:</strong> Navigation elements in the same location on every page</li>
+          <li><strong>Search:</strong> Always provide search for content-rich systems</li>
+          <li><strong>Error pages:</strong> 404 pages should help users recover, not just state an error</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">12.6 Usability Evaluation</div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Nielsen's 10 Usability Heuristics (for Heuristic Evaluation)</div>
+        <table>
+          <tr><th>#</th><th>Heuristic</th><th>Description</th></tr>
+          <tr><td>1</td><td><strong>Visibility of system status</strong></td><td>Always keep users informed about what is going on (progress bars, loading indicators)</td></tr>
+          <tr><td>2</td><td><strong>Match between system and real world</strong></td><td>Speak the user's language — words, phrases, concepts familiar to the user</td></tr>
+          <tr><td>3</td><td><strong>User control and freedom</strong></td><td>Clearly mark "emergency exits" — undo, redo, cancel</td></tr>
+          <tr><td>4</td><td><strong>Consistency and standards</strong></td><td>Follow platform and industry conventions — users should not wonder if different words mean the same thing</td></tr>
+          <tr><td>5</td><td><strong>Error prevention</strong></td><td>Design carefully to prevent problems from occurring</td></tr>
+          <tr><td>6</td><td><strong>Recognition over recall</strong></td><td>Minimise memory load — make objects, actions, options visible</td></tr>
+          <tr><td>7</td><td><strong>Flexibility and efficiency of use</strong></td><td>Accelerators for experts (keyboard shortcuts, gestures) while remaining usable for novices</td></tr>
+          <tr><td>8</td><td><strong>Aesthetic and minimalist design</strong></td><td>Dialogues should not contain irrelevant or rarely needed information</td></tr>
+          <tr><td>9</td><td><strong>Help users recognise, diagnose, recover from errors</strong></td><td>Error messages in plain language; precisely indicate the problem; constructively suggest a solution</td></tr>
+          <tr><td>10</td><td><strong>Help and documentation</strong></td><td>Even if it is better not to need documentation, it may be necessary — easy to search, focused on the task</td></tr>
+        </table>
+      </div>
+
+      <div class="subtopic">
+        <div class="subtopic-title">Usability Testing Methods</div>
+        <table>
+          <tr><th>Method</th><th>Description</th><th>Output</th></tr>
+          <tr><td><strong>Think-aloud protocol</strong></td><td>Users verbalise their thoughts while completing tasks; observer records verbalisations</td><td>Qualitative insights into user confusion and mental models</td></tr>
+          <tr><td><strong>Task-based testing</strong></td><td>Users given specific tasks to complete; success/failure, time, errors measured</td><td>Quantitative usability metrics; task completion rate</td></tr>
+          <tr><td><strong>Eye-tracking</strong></td><td>Track where users look on the screen using specialised hardware</td><td>Heatmaps showing attention; gaze paths revealing scanning behaviour</td></tr>
+          <tr><td><strong>A/B Testing</strong></td><td>Two versions (A and B) shown to different user groups; metrics compared</td><td>Statistically significant data on which design performs better</td></tr>
+          <tr><td><strong>Expert review (Heuristic)</strong></td><td>Usability experts evaluate interface against established heuristics (3–5 evaluators optimal)</td><td>List of usability problems with severity ratings</td></tr>
+          <tr><td><strong>Survey / Questionnaire</strong></td><td>SUS (System Usability Scale), NPS, CSAT administered after use</td><td>Quantitative usability score; benchmarkable</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">12.7 Accessibility (WCAG)</div>
+      <p>Web Content Accessibility Guidelines (WCAG 2.1) defines four principles:</p>
+      <table>
+        <tr><th>Principle</th><th>Meaning</th><th>Examples</th></tr>
+        <tr><td><strong>Perceivable</strong></td><td>Information and UI components must be presentable to users in ways they can perceive</td><td>Alt text for images; captions for video; sufficient colour contrast (4.5:1 ratio)</td></tr>
+        <tr><td><strong>Operable</strong></td><td>UI components and navigation must be operable</td><td>Full keyboard navigation; no keyboard traps; skip links; no content that causes seizures</td></tr>
+        <tr><td><strong>Understandable</strong></td><td>Information and UI operation must be understandable</td><td>Language declared; consistent navigation; clear error messages; input assistance</td></tr>
+        <tr><td><strong>Robust</strong></td><td>Content must be interpreted reliably by a wide variety of user agents including assistive technologies</td><td>Valid HTML; ARIA roles; name/role/value for UI components</td></tr>
+      </table>
+      <div class="info-box">
+        <div class="info-label">WCAG Conformance Levels</div>
+        <strong>Level A:</strong> Minimum — removes most significant barriers<br>
+        <strong>Level AA:</strong> Mid-range — removes most barriers; legal requirement in many jurisdictions<br>
+        <strong>Level AAA:</strong> Maximum — highest level of accessibility
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-title">12.8 Responsive and Mobile UI Design</div>
+      <ul>
+        <li><strong>Mobile-first design:</strong> Design for the smallest screen first, then scale up</li>
+        <li><strong>Touch targets:</strong> Minimum 44×44 points (Apple HIG) or 48×48 dp (Android) for touch targets</li>
+        <li><strong>Thumb zone:</strong> Design interactive elements within comfortable thumb reach on smartphones</li>
+        <li><strong>Fluid grids and flexible images:</strong> Use relative units (%, em, rem, vw) instead of fixed pixels</li>
+        <li><strong>Breakpoints:</strong> CSS media queries define layout changes at specific screen widths (320px, 768px, 1024px, 1440px typical)</li>
+        <li><strong>Progressive disclosure:</strong> Show only necessary information; reveal complexity on demand</li>
+        <li><strong>Offline capability:</strong> Progressive Web Apps (PWAs) use service workers to function offline</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<script>
+// Active sidebar link on scroll
+const sections = document.querySelectorAll('.chapter');
+const links = document.querySelectorAll('.sidebar a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const id = entry.target.id;
+      const activeLink = document.querySelector(`.sidebar a[href="#${id}"]`);
+      if (activeLink) activeLink.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
